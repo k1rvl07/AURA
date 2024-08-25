@@ -1,0 +1,275 @@
+// Переменные и мапы
+
+$colors-map: (
+  "black": #070608,
+  "blue-neon": #46f4db,
+  "lime": #57d272
+);
+
+@function color($color-name) {
+  @return map-get($colors-map, $color-name);
+}
+
+$font-weights-map: (
+  "thin": 100,
+  "extra-light": 200,
+  "light": 300,
+  "regular": 400,
+  "medium": 500,
+  "semi-bold": 600,
+  "bold": 700,
+  "extra-bold": 800,
+  "black": 900,
+  "extra-black": 1000
+);
+
+$link-list: (navbar-link "Muller" bold normal color("black") color("blue-neon") color("lime") 16px 20px 20px,);
+
+$button-list: (
+  // button-name border-presence font-family font-weight font-style font-size tablet-font-size desktop-font-size color second-color background-color background-color-second background-color-third padding-x padding-x-tablet padding-y padding-y-tablet border border-radius
+  navbar-button noborder "Muller" bold normal 16px 16px 16px white color("black") color("black") color("blue-neon")
+    color("lime") 0px 31.5px 0px 17px 5px 40px,
+);
+
+// Сложные миксины
+
+@mixin respond-to($media) {
+  @if $media == tablet {
+    @media only screen and (min-width: 1024px) {
+      @content;
+    }
+  } @else if $media == desktop {
+    @media only screen and (min-width: 1920px) {
+      @content;
+    }
+  } @else {
+    @warn "'#{ $media }' is not a valid media query.";
+  }
+}
+
+@mixin box($width, $height: $width) {
+  width: $width;
+  @if $height != 0px {
+    height: $height;
+  }
+}
+
+@mixin flex($direction: row, $justify: flex-start, $align: flex-start, $wrap: nowrap, $gap: 0px) {
+  display: flex;
+
+  @if $direction != row {
+    flex-direction: $direction;
+  } @else if $direction == ROW {
+    flex-direction: row;
+  }
+
+  @if $justify != flex-start {
+    justify-content: $justify;
+  } @else if $justify == FLEX-START {
+    justify-content: flex-start;
+  }
+
+  @if ($direction == row or $direction == row-reverse) and $align != flex-start {
+    align-items: $align;
+  } @else if $direction != row and $direction != row-reverse and $align == flex-start {
+    align-items: $align;
+  } @else if $align == FLEX-START {
+    align-items: flex-start;
+  }
+
+  @if $direction == column {
+    align-items: $align;
+  }
+
+  @if $wrap != nowrap {
+    flex-wrap: $wrap;
+  } @else if $wrap == NOWRAP {
+    flex-wrap: nowrap;
+  }
+
+  @if $gap != 0px {
+    gap: $gap;
+  } @else if $gap == null {
+    gap: 0;
+  }
+}
+
+@mixin axis-indent($type, $axis, $value, $yvalue: 0px) {
+  @if $axis == x {
+    #{$type}-left: $value;
+    #{$type}-right: $value;
+  } @else if $axis == y {
+    #{$type}-top: $value;
+    #{$type}-bottom: $value;
+  } @else if $axis == xy {
+    #{$type}-left: $value;
+    #{$type}-right: $value;
+    #{$type}-top: $yvalue;
+    #{$type}-bottom: $yvalue;
+  } @else {
+    @warn "'#{ $axis }' is not a valid axis.";
+  }
+}
+
+@mixin border(
+  $sides: (
+    top,
+    right,
+    bottom,
+    left
+  ),
+  $width: 1px,
+  $style: solid,
+  $color: #000
+) {
+  @each $side in $sides {
+    border-#{$side}-width: $width;
+    border-#{$side}-style: $style;
+    border-#{$side}-color: $color;
+  }
+}
+
+// Простые миксины
+
+// Сложные шаблоны
+
+@each $name, $weight in $font-weights-map {
+  %#{$name} {
+    font-weight: $weight;
+  }
+}
+
+@each $item in $link-list {
+  $name: nth($item, 1);
+  $font: nth($item, 2);
+  $font-weight: nth($item, 3);
+  $font-style: nth($item, 4);
+  $color: nth($item, 5);
+  $second-color: nth($item, 6);
+  $third-color: nth($item, 7);
+  $font-size: nth($item, 8);
+  $tablet-font-size: nth($item, 9);
+  $desktop-font-size: nth($item, 10);
+
+  %#{$name} {
+    font-family: $font;
+    @extend %#{$font-weight};
+    font-style: $font-style;
+    color: $color;
+    font-size: $font-size;
+    &:hover {
+      color: $second-color;
+    }
+    &:active {
+      color: $third-color;
+    }
+    @if $font-size != $tablet-font-size {
+      @include respond-to(tablet) {
+        font-size: $tablet-font-size;
+      }
+    }
+    @if $tablet-font-size != $desktop-font-size {
+      @include respond-to(desktop) {
+        font-size: $desktop-font-size;
+      }
+    }
+  }
+}
+
+@each $item in $button-list {
+  $name: nth($item, 1);
+  $border-presence: nth($item, 2);
+  $font-family: nth($item, 3);
+  $font-weight: nth($item, 4);
+  $font-style: nth($item, 5);
+  $font-size: nth($item, 6);
+  $tablet-font-size: nth($item, 7);
+  $desktop-font-size: nth($item, 8);
+  $color: nth($item, 9);
+  $second-color: nth($item, 10);
+  $background-color: nth($item, 11);
+  $background-color-second: nth($item, 12);
+  $background-color-third: nth($item, 13);
+  $padding-x: nth($item, 14);
+  $padding-x-tablet: nth($item, 15);
+  $padding-y: nth($item, 16);
+  $padding-y-tablet: nth($item, 17);
+  $border: nth($item, 18);
+  $border-radius: nth($item, 19);
+
+  %#{$name} {
+    @if $border-presence == noborder {
+      border: none;
+    } @else {
+      border: $border;
+    }
+    font-family: $font-family;
+    font-weight: $font-weight;
+    font-style: $font-style;
+    font-size: $font-size;
+    color: $color;
+    background-color: $background-color;
+    border-radius: $border-radius;
+    @include axis-indent(padding, x, $padding-x);
+    @include axis-indent(padding, y, $padding-y);
+    @if ($padding-x != $padding-x-tablet) {
+      @include respond-to(tablet) {
+        @include axis-indent(padding, x, $padding-x-tablet);
+      }
+    }
+    @if ($padding-y != $padding-y-tablet) {
+      @include respond-to(tablet) {
+        @include axis-indent(padding, y, $padding-y-tablet);
+      }
+    }
+    @if tablet-font-size != font-size {
+      @include respond-to(tablet) {
+        font-size: $tablet-font-size;
+      }
+    }
+    @if desktop-font-size != tablet-font-size {
+      @include respond-to(desktop) {
+        font-size: $desktop-font-size;
+      }
+    }
+    &:hover {
+      background-color: $background-color-second;
+      color: $second-color;
+    }
+    &:active {
+      background-color: $background-color-third;
+    }
+  }
+}
+
+// Простые шаблоны
+
+%container {
+  width: 300px;
+  margin: 0 auto;
+  @include respond-to(tablet) {
+    width: 950px;
+  }
+  @include respond-to(desktop) {
+    width: 1280px;
+  }
+}
+
+%simple-transition {
+  transition: 0.3s;
+  &:hover {
+    transition: 0.3s;
+  }
+  &:active {
+    transition: 0.05s;
+  }
+}
+
+%simple-scale {
+  &:hover {
+    transform: scale(1.2);
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+}

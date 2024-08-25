@@ -1,13 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aura</title>
-    <link rel="stylesheet" href="./src/css/clear.css">
+    <link rel="stylesheet" href="./css/clear.css">
 </head>
+
 <body>
-    
-    <script src="./src/js/main.js"></script>
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="header__bar">
+                    <img class="header__logo" src="./images/Logo.svg" alt="">
+                    <nav class="navbar">
+                        <ul class="navbar__list">
+                            <li class="navbar__item">
+                                <a class="navbar__link" href="#">Авторы</a>
+                            </li>
+                            <li class="navbar__item">
+                                <a class="navbar__link" href="#">Коллекции</a>
+                            </li>
+                            <li class="navbar__item">
+                                <a class="navbar__link" href="#">Сервисы</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <button class="header__button">Кошелёк</button>
+                    <button class="header__button-icon"><img src="./images/wallet.svg" alt=""></button>
+                </div>
+                <nav class="navbar navbar-mobile">
+                    <ul class="navbar__list">
+                        <li class="navbar__item">
+                            <a class="navbar__link navbar__link" href="#">Авторы</a>
+                        </li>
+                        <li class="navbar__item">
+                            <a class="navbar__link navbar__link" href="#">Коллекции</a>
+                        </li>
+                        <li class="navbar__item">
+                            <a class="navbar__link navbar__link" href="#">Сервисы</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <script src="./main.js"></script>
 </body>
+
 </html>

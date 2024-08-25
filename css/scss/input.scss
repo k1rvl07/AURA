@@ -1,0 +1,78 @@
+// Шрифты
+@import "./font.scss";
+// Обнуление
+@import "./null.scss";
+// Конфигурация
+@import "./configuration.scss";
+
+// Базовые стили
+
+.container {
+  @extend %container;
+}
+
+.header {
+  &__logo {
+    @include box(75px, 30px);
+    @include respond-to(tablet) {
+      @include box(100px, 40px);
+    }
+  }
+  &__bar {
+    @include border(bottom, 1px, solid, #c4c4c4);
+    @include flex(row, space-between, center);
+    @include axis-indent(padding, y, 17px);
+    @include respond-to(tablet) {
+      @include border(bottom, 0);
+      @include axis-indent(padding, y, 15px);
+      @include flex(row, FLEX-START, center, nowrap);
+    }
+    .navbar {
+      display: none;
+      @include respond-to(tablet) {
+        display: block;
+        margin-left: 64px;
+      }
+    }
+  }
+  &__button {
+    display: none;
+    margin-left: auto;
+    @include respond-to(tablet) {
+      display: block;
+    }
+    @extend %navbar-button;
+    &-text {
+      display: none;
+      @include respond-to(tablet) {
+        display: flex;
+      }
+    }
+    &-icon {
+      display: flex;
+      @extend %simple-scale;
+      @extend %simple-transition;
+      @include respond-to(tablet) {
+        display: none;
+      }
+    }
+  }
+  .navbar {
+    &__link {
+      @extend %navbar-link;
+      @extend %simple-transition;
+    }
+    &__list {
+      @include flex(row, space-between, center);
+      @include respond-to(tablet) {
+        @include flex(row, space-between, center, nowrap, 32px);
+      }
+    }
+  }
+  .navbar-mobile {
+    @include axis-indent(padding, y, 10px);
+    @include respond-to(tablet) {
+      display: none;
+    }
+  }
+}
