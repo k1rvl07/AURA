@@ -200,7 +200,7 @@ $button-list: (
   %#{$name} {
     @if $border-presence == noborder {
       border: none;
-    } @else {
+    } @else if $border-presence == border {
       border: $border;
     }
     font-family: $font-family;
