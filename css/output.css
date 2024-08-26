@@ -94,8 +94,24 @@ legend {
   display: block;
 }
 
-.header .navbar__link {
+.main__title {
+  font-weight: 400;
+}
+
+.main__button-author, .main__button-buy, .header__button, .header .navbar__link {
   font-weight: 700;
+}
+
+.main__title {
+  font-family: "Russo One";
+  font-style: normal;
+  font-size: 35px;
+  color: white;
+}
+@media only screen and (min-width: 1024px) {
+  .main__title {
+    font-size: 70px;
+  }
 }
 
 .header .navbar__link {
@@ -117,47 +133,91 @@ legend {
 }
 
 .header__button {
-  border: none;
   font-family: "Muller";
-  font-weight: bold;
   font-style: normal;
-  font-size: 16px;
   color: white;
-  background-color: #070608;
-  border-radius: 40px;
+  font-size: 16px;
   padding-left: 0px;
   padding-right: 0px;
   padding-top: 0px;
   padding-bottom: 0px;
+  border-radius: 40px;
 }
 @media only screen and (min-width: 1024px) {
   .header__button {
     padding-left: 31.5px;
     padding-right: 31.5px;
-  }
-}
-@media only screen and (min-width: 1024px) {
-  .header__button {
     padding-top: 17px;
     padding-bottom: 17px;
   }
 }
-@media only screen and (min-width: 1024px) {
-  .header__button {
-    font-size: 16px;
-  }
-}
-@media only screen and (min-width: 1920px) {
-  .header__button {
-    font-size: 16px;
-  }
-}
 .header__button:hover {
-  background-color: #46f4db;
   color: #070608;
 }
 .header__button:active {
-  background-color: #57d272;
+  color: #070608;
+}
+
+.main__button-buy {
+  font-family: "Muller";
+  font-style: normal;
+  color: #070608;
+  font-size: 16px;
+  padding-left: 38.5px;
+  padding-right: 38.5px;
+  padding-top: 17px;
+  padding-bottom: 17px;
+  border-radius: 40px;
+}
+@media only screen and (min-width: 1024px) {
+  .main__button-buy {
+    font-size: 20px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .main__button-buy {
+    padding-left: 54px;
+    padding-right: 54px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+}
+.main__button-buy:hover {
+  color: #070608;
+}
+.main__button-buy:active {
+  color: #070608;
+}
+
+.main__button-author {
+  font-family: "Muller";
+  font-style: normal;
+  color: white;
+  font-size: 16px;
+  padding-left: 33.5px;
+  padding-right: 33.5px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 40px;
+}
+@media only screen and (min-width: 1024px) {
+  .main__button-author {
+    font-size: 20px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .main__button-author {
+    padding-left: 49px;
+    padding-right: 49px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+.main__button-author:hover {
+  color: #070608;
+}
+.main__button-author:active {
+  color: #070608;
 }
 
 .container {
@@ -175,13 +235,13 @@ legend {
   }
 }
 
-.header .navbar__link, .header__button-icon, .header__button {
+.header .navbar__link, .header__button-icon, .main__button-author, .main__button-buy, .header__button {
   transition: 0.3s;
 }
-.header .navbar__link:hover, .header__button-icon:hover, .header__button:hover {
+.header .navbar__link:hover, .header__button-icon:hover, .main__button-author:hover, .main__button-buy:hover, .header__button:hover {
   transition: 0.3s;
 }
-.header .navbar__link:active, .header__button-icon:active, .header__button:active {
+.header .navbar__link:active, .header__button-icon:active, .main__button-author:active, .main__button-buy:active, .header__button:active {
   transition: 0.05s;
 }
 
@@ -216,7 +276,6 @@ legend {
   .header__bar {
     border-bottom-width: 0;
     border-bottom-style: solid;
-    border-bottom-color: #000;
     padding-top: 15px;
     padding-bottom: 15px;
     display: flex;
@@ -236,6 +295,13 @@ legend {
 .header__button {
   display: none;
   margin-left: auto;
+  background-color: #070608;
+}
+.header__button:hover {
+  background-color: #46f4db;
+}
+.header__button:active {
+  background-color: #57d272;
 }
 @media only screen and (min-width: 1024px) {
   .header__button {
@@ -278,5 +344,96 @@ legend {
 @media only screen and (min-width: 1024px) {
   .header .navbar-mobile {
     display: none;
+  }
+}
+
+.main {
+  background-color: #070608;
+  overflow: hidden;
+  position: relative;
+}
+.main__title {
+  padding-top: 64px;
+  padding-bottom: 16px;
+}
+@media only screen and (min-width: 1024px) {
+  .main__title {
+    padding-top: 160px;
+    padding-bottom: 36px;
+  }
+}
+.main__buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 64px;
+}
+@media only screen and (min-width: 1024px) {
+  .main__buttons {
+    display: flex;
+    flex-direction: ROW;
+    gap: 32px;
+    padding-bottom: 160px;
+  }
+}
+.main__button-buy:hover {
+  background-color: #46f4db;
+}
+.main__button-buy:active {
+  background-color: #57d272;
+}
+.main__gradient {
+  background: linear-gradient(180deg, #46f4db, #57d272);
+  width: fit-content;
+  height: fit-content;
+  border-radius: 40px;
+}
+.main__button-author {
+  border-width: 5px;
+  border-style: solid;
+  border-color: #46f4db;
+}
+.main__button-author:hover {
+  background: #46f4db;
+}
+.main__button-author:active {
+  background-color: #57d272;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #57d272;
+}
+.main__hero {
+  min-width: 320px;
+  min-height: 145px;
+  background-image: url("../images/hero.png");
+  background-repeat: repeat-x;
+  background-position: center;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  bottom: -150px;
+}
+@media only screen and (min-width: 1024px) {
+  .main__hero {
+    min-width: 332px;
+    min-height: 680px;
+    background-image: url("../images/hero_tablet.png");
+    background-repeat: no-repeat;
+    position: absolute;
+    right: -332px;
+    bottom: 0px;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .main__hero {
+    min-width: 944px;
+    min-height: 680px;
+    background-image: url("../images/hero_desktop.png");
+    background-repeat: no-repeat;
+    position: absolute;
+    right: -944px;
+    bottom: 0px;
   }
 }

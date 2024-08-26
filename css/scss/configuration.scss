@@ -23,12 +23,15 @@ $font-weights-map: (
   "extra-black": 1000
 );
 
+$text-list: (title "Russo One" regular normal 35px 70px 70px white,);
+
 $link-list: (navbar-link "Muller" bold normal color("black") color("blue-neon") color("lime") 16px 20px 20px,);
 
 $button-list: (
-  // button-name border-presence font-family font-weight font-style font-size tablet-font-size desktop-font-size color second-color background-color background-color-second background-color-third padding-x padding-x-tablet padding-y padding-y-tablet border border-radius
-  navbar-button noborder "Muller" bold normal 16px 16px 16px white color("black") color("black") color("blue-neon")
-    color("lime") 0px 31.5px 0px 17px 5px 40px,
+  // button-namee font-family font-weight font-style font-size tablet-font-size desktop-font-size color second-color padding-x padding-x-tablet padding-y padding-y-tablet border border-radius
+  navbar-button "Muller" bold normal 16px 16px 16px white color("black") 0px 31.5px 0px 17px 40px,
+  main-button-buy "Muller" bold normal 16px 20px 20px color("black") color("black") 38.5px 54px 17px 25px 40px,
+  main-button-author "Muller" bold normal 16px 20px 20px white color("black") 33.5px 49px 12px 20px 40px,
 );
 
 // Сложные миксины
@@ -47,10 +50,22 @@ $button-list: (
   }
 }
 
-@mixin box($width, $height: $width) {
-  width: $width;
-  @if $height != 0px {
-    height: $height;
+@mixin size($type, $width, $height: $width) {
+  @if $type == min {
+    min-width: $width;
+    @if $height != 0px {
+      min-height: $height;
+    }
+  } @else if $type == max {
+    max-width: $width;
+    @if $height != 0px {
+      max-height: $height;
+    }
+  } @else if $type == default {
+    width: $width;
+    @if $height != 0px {
+      height: $height;
+    }
   }
 }
 
@@ -116,17 +131,30 @@ $button-list: (
     top,
     right,
     bottom,
-    left
+    left,
+    all
   ),
   $width: 1px,
   $style: solid,
-  $color: #000
+  $color: null
 ) {
-  @each $side in $sides {
-    border-#{$side}-width: $width;
-    border-#{$side}-style: $style;
-    border-#{$side}-color: $color;
+  @if $sides == all {
+    border-width: $width;
+    border-style: $style;
+    border-color: $color;
+  } @else {
+    @each $side in $sides {
+      border-#{$side}-width: $width;
+      border-#{$side}-style: $style;
+      @if $color != null {
+        border-#{$side}-color: $color;
+      }
+    }
   }
+}
+
+@mixin linear-gradient($direction, $args...) {
+  background: linear-gradient($direction, $args);
 }
 
 // Простые миксины
@@ -136,6 +164,35 @@ $button-list: (
 @each $name, $weight in $font-weights-map {
   %#{$name} {
     font-weight: $weight;
+  }
+}
+
+@each $item in $text-list {
+  $name: nth($item, 1);
+  $font: nth($item, 2);
+  $font-weight: nth($item, 3);
+  $font-style: nth($item, 4);
+  $font-size: nth($item, 5);
+  $tablet-font-size: nth($item, 6);
+  $desktop-font-size: nth($item, 7);
+  $color: nth($item, 8);
+
+  %#{$name} {
+    font-family: $font;
+    @extend %#{$font-weight};
+    font-style: $font-style;
+    font-size: $font-size;
+    color: $color;
+    @if $font-size != $tablet-font-size {
+      @include respond-to(tablet) {
+        font-size: $tablet-font-size;
+      }
+    }
+    @if $tablet-font-size != $desktop-font-size {
+      @include respond-to(desktop) {
+        font-size: $desktop-font-size;
+      }
+    }
   }
 }
 
@@ -178,70 +235,51 @@ $button-list: (
 
 @each $item in $button-list {
   $name: nth($item, 1);
-  $border-presence: nth($item, 2);
-  $font-family: nth($item, 3);
-  $font-weight: nth($item, 4);
-  $font-style: nth($item, 5);
-  $font-size: nth($item, 6);
-  $tablet-font-size: nth($item, 7);
-  $desktop-font-size: nth($item, 8);
-  $color: nth($item, 9);
-  $second-color: nth($item, 10);
-  $background-color: nth($item, 11);
-  $background-color-second: nth($item, 12);
-  $background-color-third: nth($item, 13);
-  $padding-x: nth($item, 14);
-  $padding-x-tablet: nth($item, 15);
-  $padding-y: nth($item, 16);
-  $padding-y-tablet: nth($item, 17);
-  $border: nth($item, 18);
-  $border-radius: nth($item, 19);
+  $font-family: nth($item, 2);
+  $font-weight: nth($item, 3);
+  $font-style: nth($item, 4);
+  $font-size: nth($item, 5);
+  $font-tablet-size: nth($item, 6);
+  $font-desktop-size: nth($item, 7);
+  $color: nth($item, 8);
+  $second-color: nth($item, 9);
+  $padding-x: nth($item, 10);
+  $padding-x-tablet: nth($item, 11);
+  $padding-y: nth($item, 12);
+  $padding-y-tablet: nth($item, 13);
+  $border-radius: nth($item, 14);
 
   %#{$name} {
-    @if $border-presence == noborder {
-      border: none;
-    } @else if $border-presence == border {
-      border: $border;
-    }
     font-family: $font-family;
-    font-weight: $font-weight;
+    @extend %#{$font-weight};
     font-style: $font-style;
-    font-size: $font-size;
     color: $color;
-    background-color: $background-color;
-    border-radius: $border-radius;
+    font-size: $font-size;
     @include axis-indent(padding, x, $padding-x);
     @include axis-indent(padding, y, $padding-y);
-    @if ($padding-x != $padding-x-tablet) {
+    border-radius: $border-radius;
+    @if $font-size != $font-tablet-size {
       @include respond-to(tablet) {
-        @include axis-indent(padding, x, $padding-x-tablet);
+        font-size: $font-tablet-size;
       }
     }
-    @if ($padding-y != $padding-y-tablet) {
-      @include respond-to(tablet) {
-        @include axis-indent(padding, y, $padding-y-tablet);
-      }
-    }
-    @if tablet-font-size != font-size {
-      @include respond-to(tablet) {
-        font-size: $tablet-font-size;
-      }
-    }
-    @if desktop-font-size != tablet-font-size {
+    @if $font-tablet-size != $font-desktop-size {
       @include respond-to(desktop) {
-        font-size: $desktop-font-size;
+        font-size: $font-desktop-size;
       }
+    }
+    @include respond-to(tablet) {
+      @include axis-indent(padding, x, $padding-x-tablet);
+      @include axis-indent(padding, y, $padding-y-tablet);
     }
     &:hover {
-      background-color: $background-color-second;
       color: $second-color;
     }
     &:active {
-      background-color: $background-color-third;
+      color: $second-color;
     }
   }
 }
-
 // Простые шаблоны
 
 %container {
@@ -272,4 +310,19 @@ $button-list: (
   &:active {
     transform: scale(0.9);
   }
+}
+
+%navbar-button {
+  @extend %simple-transition;
+  @extend %navbar-button;
+}
+
+%main-button-buy {
+  @extend %main-button-buy;
+  @extend %simple-transition;
+}
+
+%main-button-author {
+  @extend %main-button-author;
+  @extend %simple-transition;
 }

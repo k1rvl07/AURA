@@ -13,9 +13,9 @@
 
 .header {
   &__logo {
-    @include box(75px, 30px);
+    @include size(default, 75px, 30px);
     @include respond-to(tablet) {
-      @include box(100px, 40px);
+      @include size(default, 100px, 40px);
     }
   }
   &__bar {
@@ -36,9 +36,15 @@
     }
   }
   &__button {
-    @extend %simple-transition;
     display: none;
     margin-left: auto;
+    background-color: color("black");
+    &:hover {
+      background-color: color("blue-neon");
+    }
+    &:active {
+      background-color: color("lime");
+    }
     @include respond-to(tablet) {
       display: block;
     }
@@ -74,6 +80,79 @@
     @include axis-indent(padding, y, 10px);
     @include respond-to(tablet) {
       display: none;
+    }
+  }
+}
+
+.main {
+  background-color: color("black");
+  overflow: hidden;
+  position: relative;
+  &__title {
+    @extend %title;
+    padding-top: 64px;
+    padding-bottom: 16px;
+    @include respond-to(tablet) {
+      padding-top: 160px;
+      padding-bottom: 36px;
+    }
+  }
+  &__buttons {
+    @include flex(column, flex-start, flex-start, nowrap, 16px);
+    padding-bottom: 64px;
+    @include respond-to(tablet) {
+      @include flex(ROW, flex-start, center, nowrap, 32px);
+      padding-bottom: 160px;
+    }
+  }
+  &__button-buy {
+    @extend %main-button-buy;
+    &:hover {
+      background-color: color("blue-neon");
+    }
+    &:active {
+      background-color: color("lime");
+    }
+  }
+  &__gradient {
+    @include linear-gradient(180deg, color("blue-neon"), color("lime"));
+    @include size(default, fit-content);
+    border-radius: 40px;
+  }
+  &__button-author {
+    @extend %main-button-author;
+    @include border(all, 5px, solid, color("blue-neon"));
+    &:hover {
+      background: color("blue-neon");
+    }
+    &:active {
+      background-color: color("lime");
+      @include border(all, 5px, solid, color("lime"));
+    }
+  }
+  &__hero {
+    @include size(min, 320px, 145px);
+    background-image: url("../images/hero.png");
+    background-repeat: repeat-x;
+    background-position: center;
+    @include axis-indent(margin, x, auto);
+    position: relative;
+    bottom: -150px;
+    @include respond-to(tablet) {
+      @include size(min, 332px, 680px);
+      background-image: url("../images/hero_tablet.png");
+      background-repeat: no-repeat;
+      position: absolute;
+      right: -332px;
+      bottom: 0px;
+    }
+    @include respond-to(desktop) {
+      @include size(min, 944px, 680px);
+      background-image: url("../images/hero_desktop.png");
+      background-repeat: no-repeat;
+      position: absolute;
+      right: -944px;
+      bottom: 0px;
     }
   }
 }
