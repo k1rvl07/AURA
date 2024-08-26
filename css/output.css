@@ -175,13 +175,13 @@ legend {
   }
 }
 
-.header .navbar__link, .header__button-icon {
+.header .navbar__link, .header__button-icon, .header__button {
   transition: 0.3s;
 }
-.header .navbar__link:hover, .header__button-icon:hover {
+.header .navbar__link:hover, .header__button-icon:hover, .header__button:hover {
   transition: 0.3s;
 }
-.header .navbar__link:active, .header__button-icon:active {
+.header .navbar__link:active, .header__button-icon:active, .header__button:active {
   transition: 0.05s;
 }
 

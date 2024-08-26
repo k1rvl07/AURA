@@ -36,6 +36,7 @@
     }
   }
   &__button {
+    @extend %simple-transition;
     display: none;
     margin-left: auto;
     @include respond-to(tablet) {
