@@ -89,7 +89,7 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, {
-    threshold: 0.5 // Trigger when 50% of the slide is visible
+    threshold: 0.5
 });
 
 slides.forEach(slide => {
@@ -106,7 +106,6 @@ navItems.forEach((item, index) => {
     });
 });
 
-// Initial update
 updateNavIndicators(currentIndex);
 
 const newSlides = document.querySelectorAll('.new-stickers .slider__slide');
@@ -114,7 +113,6 @@ const newNavItems = document.querySelectorAll('.new-stickers .slider__nav-button
 const newSlider = document.getElementById('newStickersSlides');
 let newCurrentIndex = 0;
 
-// Function to update navigation indicators
 function updateNewNavIndicators(index) {
     newNavItems.forEach((item, i) => {
         if (i === index) {
@@ -125,15 +123,12 @@ function updateNewNavIndicators(index) {
     });
 }
 
-// Function to scroll to the slide
 function scrollToSlide(index) {
     newCurrentIndex = index;
     updateNewNavIndicators(newCurrentIndex);
-    // Scroll the slider to the desired slide
     newSlides[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 }
 
-// Set up the IntersectionObserver for new slides
 const newObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -143,20 +138,17 @@ const newObserver = new IntersectionObserver((entries) => {
         }
     });
 }, {
-    threshold: 0.5 // Trigger when 50% of the slide is visible
+    threshold: 0.5 
 });
 
-// Observe each new slide
 newSlides.forEach(slide => {
     newObserver.observe(slide);
 });
 
-// Add event listeners to navigation buttons
 newNavItems.forEach((item, i) => {
     item.addEventListener('click', () => {
         scrollToSlide(i);
     });
 });
 
-// Initial update for new navigation indicators
 updateNewNavIndicators(newCurrentIndex);
