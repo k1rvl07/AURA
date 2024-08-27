@@ -98,7 +98,7 @@ legend {
   font-weight: 400;
 }
 
-.other-auction__button, .auction__button, .main__button-author, .main__button-buy, .header__button, .header .navbar__link, .other-auction .card__time, .other-auction .card__price, .other-auction .card__title, .other-auction .card__user-name, .auction__clock-num, .auction__clock-text, .auction__time-text, .auction__dollar, .auction__crypto, .auction__price-text, .auction__user-name, .auction__live-text {
+.new-stickers .slider__nav-button, .other-auction__button, .auction__button, .main__button-author, .main__button-buy, .header__button, .header .navbar__link, .other-auction .card__time, .other-auction .card__price, .other-auction .card__title, .other-auction .card__user-name, .auction__clock-num, .auction__clock-text, .auction__time-text, .auction__dollar, .auction__crypto, .auction__price-text, .auction__user-name, .auction__live-text {
   font-weight: 700;
 }
 
@@ -420,6 +420,37 @@ legend {
   color: #070608;
 }
 
+.new-stickers .slider__nav-button {
+  font-family: "Muller";
+  font-style: normal;
+  color: white;
+  font-size: 12px;
+  padding-left: 13px;
+  padding-right: 13px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-radius: 40px;
+}
+@media only screen and (min-width: 1024px) {
+  .new-stickers .slider__nav-button {
+    font-size: 16px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .new-stickers .slider__nav-button {
+    padding-left: 22px;
+    padding-right: 22px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}
+.new-stickers .slider__nav-button:hover {
+  color: white;
+}
+.new-stickers .slider__nav-button:active {
+  color: white;
+}
+
 .container {
   width: 300px;
   margin: 0 auto;
@@ -435,13 +466,13 @@ legend {
   }
 }
 
-.header .navbar__link, .header__button-icon, .header__button, .main__button-buy, .main__button-author, .auction__button, .other-auction__button {
+.other-auction .slider__nav-item, .header .navbar__link, .header__button-icon, .header__button, .main__button-buy, .main__button-author, .auction__button, .other-auction__button, .new-stickers .slider__nav-button {
   transition: 0.3s;
 }
-.header .navbar__link:hover, .header__button-icon:hover, .header__button:hover, .main__button-buy:hover, .main__button-author:hover, .auction__button:hover, .other-auction__button:hover {
+.other-auction .slider__nav-item:hover, .header .navbar__link:hover, .header__button-icon:hover, .header__button:hover, .main__button-buy:hover, .main__button-author:hover, .auction__button:hover, .other-auction__button:hover, .new-stickers .slider__nav-button:hover {
   transition: 0.3s;
 }
-.header .navbar__link:active, .header__button-icon:active, .header__button:active, .main__button-buy:active, .main__button-author:active, .auction__button:active, .other-auction__button:active {
+.other-auction .slider__nav-item:active, .header .navbar__link:active, .header__button-icon:active, .header__button:active, .main__button-buy:active, .main__button-author:active, .auction__button:active, .other-auction__button:active, .new-stickers .slider__nav-button:active {
   transition: 0.05s;
 }
 
@@ -454,6 +485,7 @@ legend {
 
 .slider {
   overflow-x: scroll;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
 }
 
@@ -463,8 +495,6 @@ legend {
 
 .slider__slide {
   scroll-snap-align: start;
-  overflow: hidden;
-  overflow-y: hidden;
   position: relative;
 }
 
@@ -1063,4 +1093,135 @@ legend {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.new-stickers {
+  padding-top: 32px;
+  padding-bottom: 64px;
+  background-color: #070608;
+}
+@media only screen and (min-width: 1024px) {
+  .new-stickers {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+}
+.new-stickers__heading {
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+@media only screen and (min-width: 1024px) {
+  .new-stickers__heading {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+}
+.new-stickers__fire {
+  width: 24px;
+  height: 24px;
+}
+@media only screen and (min-width: 1024px) {
+  .new-stickers__fire {
+    width: 48px;
+    height: 48px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .new-stickers__img {
+    display: none;
+  }
+}
+.new-stickers__img-tablet {
+  display: none;
+}
+@media only screen and (min-width: 1024px) {
+  .new-stickers__img-tablet {
+    display: block;
+  }
+}
+.new-stickers .slider {
+  margin-top: 32px;
+  margin-bottom: 32px;
+  width: 296px;
+  height: 143px;
+  display: flex;
+  align-items: center;
+}
+@media only screen and (min-width: 1024px) {
+  .new-stickers .slider {
+    width: 952px;
+    height: 223px;
+    overflow-x: hidden;
+  }
+  .new-stickers .slider::-webkit-scrollbar {
+    width: 0;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .new-stickers .slider {
+    width: 1280px;
+    height: 300px;
+  }
+}
+.new-stickers .slider__slides {
+  width: fit-content;
+  height: 143px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.new-stickers .slider__slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 296px;
+  height: 143px;
+}
+@media only screen and (min-width: 1024px) {
+  .new-stickers .slider__slide {
+    width: 952px;
+    height: 223px;
+  }
+  .new-stickers .slider__slide:nth-child(5), .new-stickers .slider__slide:nth-child(6) {
+    display: none;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .new-stickers .slider__slide {
+    width: 1280px;
+    height: 300px;
+  }
+}
+.new-stickers .slider__nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+@media only screen and (min-width: 1024px) {
+  .new-stickers .slider__nav {
+    margin-top: 64px;
+  }
+}
+.new-stickers .slider__nav-button {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #d13130;
+}
+@media only screen and (min-width: 1024px) {
+  .new-stickers .slider__nav-button:nth-child(5), .new-stickers .slider__nav-button:nth-child(6) {
+    display: none;
+  }
+}
+.new-stickers .slider__nav-button:hover {
+  background-color: #ff6f6f;
+  border-color: #ff6f6f;
+}
+.new-stickers .slider__nav-button:active {
+  background-color: #d13130;
+  border-color: #d13130;
 }

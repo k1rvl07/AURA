@@ -5,6 +5,7 @@ $colors-map: (
   "blue-neon": #46f4db,
   "lime": #57d272,
   "red": #d13130,
+  "white-red": #ff6f6f,
   "grey": #95959d,
   "extra-white": #ededf2
 );
@@ -53,6 +54,7 @@ $button-list: (
   main-button-author "Muller" bold normal 16px 20px 20px white color("black") 33.5px 49px 12px 20px 40px,
   main-button-noborder "Muller" bold normal 16px 20px 20px color("black") color("black") 26px 74px 15px 25px 40px,
   main-button-border "Muller" bold normal 20px 20px 20px color("black") color("black") 27px 75px 10px 20px 40px,
+  new-stickers-button "Muller" bold normal 12px 16px 16px white white 13px 22px 6px 8px 40px,
 );
 
 // Сложные миксины
@@ -354,6 +356,7 @@ $button-list: (
 
 %slider {
   overflow-x: scroll;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
 }
 
@@ -363,7 +366,5 @@ $button-list: (
 
 %slide {
   scroll-snap-align: start;
-  overflow: hidden;
-  overflow-y: hidden;
   position: relative;
 }

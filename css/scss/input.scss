@@ -417,6 +417,7 @@
       }
     }
     &__nav-item {
+      @extend %simple-transition;
       @include size(default, 10px);
       @include border-radius(50%);
       background-color: color("black");
@@ -455,6 +456,97 @@
     &__time {
       @extend %oth-auc-time;
       @include flex(row, flex-start, center, nowrap, 4px);
+    }
+  }
+}
+
+.new-stickers {
+  padding-top: 32px;
+  padding-bottom: 64px;
+  background-color: color("black");
+  @include respond-to(tablet) {
+    @include axis-indent(padding, y, 90px);
+  }
+  &__heading {
+    color: white;
+    @include flex(row, flex-start, center, nowrap, 8px);
+    @include respond-to(tablet) {
+      @include flex(row, flex-start, center, nowrap, 16px);
+    }
+  }
+  &__fire {
+    @include size(default, 24px);
+    @include respond-to(tablet) {
+      @include size(default, 48px);
+    }
+  }
+  &__img {
+    @include respond-to(tablet) {
+      display: none;
+    }
+  }
+  &__img-tablet {
+    display: none;
+    @include respond-to(tablet) {
+      display: block;
+    }
+  }
+  .slider {
+    @include axis-indent(margin, y, 32px);
+    @include size(default, 296px, 143px);
+    @include flex(row, flex-start, center, nowrap, 0px);
+    @include respond-to(tablet) {
+      @include size(default, 952px, 223px);
+      overflow-x: hidden;
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+    }
+    @include respond-to(desktop) {
+      @include size(default, 1280px, 300px);
+    }
+    &__slides {
+      @include size(default, fit-content, 143px);
+      @include flex(row, flex-start, center, nowrap, 20px);
+    }
+    &__slide {
+      @include flex(row, center, center, nowrap, 0px);
+      @include size(default, 296px, 143px);
+      @include respond-to(tablet) {
+        @include size(default, 952px, 223px);
+        &:nth-child(5),
+        &:nth-child(6) {
+          display: none;
+        }
+      }
+      @include respond-to(desktop) {
+        @include size(default, 1280px, 300px);
+      }
+    }
+    &__nav {
+      @include flex(row, center, center, nowrap, 12px);
+      margin-top: 32px;
+      @include respond-to(tablet) {
+        margin-top: 64px;
+      }
+    }
+    &__nav-button {
+      @extend %new-stickers-button;
+      @include border(all, 2px, solid, color("red"));
+      @include respond-to(tablet) {
+        &:nth-child(5),
+        &:nth-child(6) {
+          display: none;
+        }
+      }
+      &:hover {
+        background-color: color("white-red");
+        border-color: color("white-red");
+      }
+      &:active {
+        background-color: color("red");
+        border-color: color("red");
+      }
     }
   }
 }

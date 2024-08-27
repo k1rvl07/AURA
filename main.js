@@ -64,8 +64,8 @@ const timerInterval = setInterval(() => {
     });
 }, 1000);
 
-const slides = document.querySelectorAll('.slider__slide');
-const navItems = document.querySelectorAll('.slider__nav-item');
+const slides = document.querySelectorAll('.other-auction .slider__slide');
+const navItems = document.querySelectorAll('.other-auction .slider__nav-item');
 const slider = document.getElementById('othAucSlides');
 
 let currentIndex = 0;
@@ -108,3 +108,55 @@ navItems.forEach((item, index) => {
 
 // Initial update
 updateNavIndicators(currentIndex);
+
+const newSlides = document.querySelectorAll('.new-stickers .slider__slide');
+const newNavItems = document.querySelectorAll('.new-stickers .slider__nav-button');
+const newSlider = document.getElementById('newStickersSlides');
+let newCurrentIndex = 0;
+
+// Function to update navigation indicators
+function updateNewNavIndicators(index) {
+    newNavItems.forEach((item, i) => {
+        if (i === index) {
+            item.style.background = '#d13130';
+        } else {
+            item.style.background = 'transparent';
+        }
+    });
+}
+
+// Function to scroll to the slide
+function scrollToSlide(index) {
+    newCurrentIndex = index;
+    updateNewNavIndicators(newCurrentIndex);
+    // Scroll the slider to the desired slide
+    newSlides[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+}
+
+// Set up the IntersectionObserver for new slides
+const newObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const index = Array.from(newSlides).indexOf(entry.target);
+            newCurrentIndex = index;
+            updateNewNavIndicators(newCurrentIndex);
+        }
+    });
+}, {
+    threshold: 0.5 // Trigger when 50% of the slide is visible
+});
+
+// Observe each new slide
+newSlides.forEach(slide => {
+    newObserver.observe(slide);
+});
+
+// Add event listeners to navigation buttons
+newNavItems.forEach((item, i) => {
+    item.addEventListener('click', () => {
+        scrollToSlide(i);
+    });
+});
+
+// Initial update for new navigation indicators
+updateNewNavIndicators(newCurrentIndex);
