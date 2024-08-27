@@ -82,8 +82,7 @@
   }
   .navbar {
     &__link {
-      @extend %navbar-link;
-      @extend %simple-transition;
+      @extend %header-navbar-link;
     }
     &__list {
       @include flex(row, space-between, center);
@@ -547,6 +546,55 @@
         background-color: color("red");
         border-color: color("red");
       }
+    }
+  }
+}
+
+.footer {
+  background-color: color("blue-neon");
+  &__logo {
+    @include axis-indent(margin, y, 20px);
+    @include size(default, 75px, 30px);
+    @include respond-to(tablet) {
+      @include axis-indent(margin, y, 0px);
+      @include size(default, 100px, 40px);
+    }
+  }
+  &__content {
+    @include flex(column, center, center);
+    @include respond-to(tablet) {
+      @include flex(ROW, space-between, center);
+      @include axis-indent(padding, y, 20px);
+    }
+  }
+  .navbar {
+    &__list {
+      @include flex(row, space-between, center, nowrap, 0px);
+      @include axis-indent(padding, y, 10px);
+      @include border(top, 1px, solid, color("black"));
+      @include size(default, 300px, fit-content);
+      @include respond-to(tablet) {
+        @include axis-indent(padding, y, 0px);
+        @include border(top, 0px);
+        @include size(default, 320px, fit-content);
+      }
+    }
+    &__link {
+      @extend %footer-navbar-link;
+    }
+  }
+  &__black {
+    background-color: color("black");
+  }
+  &__copyright {
+    margin-left: 120px;
+    @extend %footer-copyright;
+    @include axis-indent(padding, y, 8px);
+    @include respond-to(tablet) {
+      margin-left: 436px;
+    }
+    @include respond-to(desktop) {
+      margin-left: 600px;
     }
   }
 }

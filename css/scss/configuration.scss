@@ -3,6 +3,8 @@
 $colors-map: (
   "black": #070608,
   "blue-neon": #46f4db,
+  "lighten-blue-neon": #267d72,
+  "extra-light-blue-neon": #33ad9d,
   "lime": #57d272,
   "red": #d13130,
   "white-red": #ff6f6f,
@@ -43,9 +45,14 @@ $text-list: (
   oth-auc-title "Muller" bold normal 20px 20px 20px white,
   oth-auc-price "Muller" bold normal 20px 20px 20px color("blue-neon"),
   oth-auc-time "Muller" bold normal 16px 16px 16px color("grey"),
+  footer-copyright "Muller" regular normal 12px 12px 12px color("extra-white"),
 );
 
-$link-list: (navbar-link "Muller" bold normal color("black") color("blue-neon") color("lime") 16px 20px 20px,);
+$link-list: (
+  header-navbar-link "Muller" bold normal color("black") color("blue-neon") color("lime") 16px 20px 20px,
+  footer-navbar-link "Muller" bold normal color("black") color("lighten-blue-neon") color("extra-light-blue-neon") 16px
+    20px 20px,
+);
 
 $button-list: (
   // button-name font-family font-weight font-style font-size tablet-font-size desktop-font-size color second-color padding-x padding-x-tablet padding-y padding-y-tablet border border-radius
@@ -250,6 +257,7 @@ $button-list: (
   $desktop-font-size: nth($item, 10);
 
   %#{$name} {
+    @extend %simple-transition;
     font-family: $font;
     @extend %#{$font-weight};
     font-style: $font-style;

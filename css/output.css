@@ -94,11 +94,11 @@ legend {
   display: block;
 }
 
-.other-auction__heading, .auction__card-title, .heading, .main__title {
+.footer__copyright, .other-auction__heading, .auction__card-title, .heading, .main__title {
   font-weight: 400;
 }
 
-.new-stickers .slider__nav-button, .other-auction__button, .auction__button, .main__button-author, .main__button-buy, .header__button, .header .navbar__link, .other-auction .card__time, .other-auction .card__price, .other-auction .card__title, .other-auction .card__user-name, .auction__clock-num, .auction__clock-text, .auction__time-text, .auction__dollar, .auction__crypto, .auction__price-text, .auction__user-name, .auction__live-text {
+.new-stickers .slider__nav-button, .other-auction__button, .auction__button, .main__button-author, .main__button-buy, .header__button, .footer .navbar__link, .header .navbar__link, .other-auction .card__time, .other-auction .card__price, .other-auction .card__title, .other-auction .card__user-name, .auction__clock-num, .auction__clock-text, .auction__time-text, .auction__dollar, .auction__crypto, .auction__price-text, .auction__user-name, .auction__live-text {
   font-weight: 700;
 }
 
@@ -257,6 +257,13 @@ legend {
   color: #95959d;
 }
 
+.footer__copyright {
+  font-family: "Muller";
+  font-style: normal;
+  font-size: 12px;
+  color: #ededf2;
+}
+
 .header .navbar__link {
   font-family: "Muller";
   font-style: normal;
@@ -271,6 +278,24 @@ legend {
 }
 @media only screen and (min-width: 1024px) {
   .header .navbar__link {
+    font-size: 20px;
+  }
+}
+
+.footer .navbar__link {
+  font-family: "Muller";
+  font-style: normal;
+  color: #070608;
+  font-size: 16px;
+}
+.footer .navbar__link:hover {
+  color: #267d72;
+}
+.footer .navbar__link:active {
+  color: #33ad9d;
+}
+@media only screen and (min-width: 1024px) {
+  .footer .navbar__link {
     font-size: 20px;
   }
 }
@@ -466,13 +491,13 @@ legend {
   }
 }
 
-.other-auction .slider__nav-item, .header .navbar__link, .header__button-icon, .header__button, .main__button-buy, .main__button-author, .auction__button, .other-auction__button, .new-stickers .slider__nav-button {
+.other-auction .slider__nav-item, .header__button-icon, .header .navbar__link, .footer .navbar__link, .header__button, .main__button-buy, .main__button-author, .auction__button, .other-auction__button, .new-stickers .slider__nav-button {
   transition: 0.3s;
 }
-.other-auction .slider__nav-item:hover, .header .navbar__link:hover, .header__button-icon:hover, .header__button:hover, .main__button-buy:hover, .main__button-author:hover, .auction__button:hover, .other-auction__button:hover, .new-stickers .slider__nav-button:hover {
+.other-auction .slider__nav-item:hover, .header__button-icon:hover, .header .navbar__link:hover, .footer .navbar__link:hover, .header__button:hover, .main__button-buy:hover, .main__button-author:hover, .auction__button:hover, .other-auction__button:hover, .new-stickers .slider__nav-button:hover {
   transition: 0.3s;
 }
-.other-auction .slider__nav-item:active, .header .navbar__link:active, .header__button-icon:active, .header__button:active, .main__button-buy:active, .main__button-author:active, .auction__button:active, .other-auction__button:active, .new-stickers .slider__nav-button:active {
+.other-auction .slider__nav-item:active, .header__button-icon:active, .header .navbar__link:active, .footer .navbar__link:active, .header__button:active, .main__button-buy:active, .main__button-author:active, .auction__button:active, .other-auction__button:active, .new-stickers .slider__nav-button:active {
   transition: 0.05s;
 }
 
@@ -1224,4 +1249,77 @@ legend {
 .new-stickers .slider__nav-button:active {
   background-color: #d13130;
   border-color: #d13130;
+}
+
+.footer {
+  background-color: #46f4db;
+}
+.footer__logo {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 75px;
+  height: 30px;
+}
+@media only screen and (min-width: 1024px) {
+  .footer__logo {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 100px;
+    height: 40px;
+  }
+}
+.footer__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (min-width: 1024px) {
+  .footer__content {
+    display: flex;
+    flex-direction: ROW;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+.footer .navbar__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-color: #070608;
+  width: 300px;
+  height: fit-content;
+}
+@media only screen and (min-width: 1024px) {
+  .footer .navbar__list {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-top-width: 0px;
+    border-top-style: solid;
+    width: 320px;
+    height: fit-content;
+  }
+}
+.footer__black {
+  background-color: #070608;
+}
+.footer__copyright {
+  margin-left: 120px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+@media only screen and (min-width: 1024px) {
+  .footer__copyright {
+    margin-left: 436px;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .footer__copyright {
+    margin-left: 600px;
+  }
 }
