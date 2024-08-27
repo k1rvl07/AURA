@@ -11,6 +11,10 @@
   @extend %container;
 }
 
+.heading {
+  @extend %heading;
+}
+
 .header {
   &__logo {
     @include size(default, 75px, 30px);
@@ -153,6 +157,182 @@
       position: absolute;
       right: -944px;
       bottom: 0px;
+    }
+  }
+}
+
+.auction {
+  @include axis-indent(padding, y, 80px);
+  &__bar {
+    @include flex(row, flex-start, center, nowrap, 15px);
+    @include respond-to(tablet) {
+      @include flex(row, flex-start, center, nowrap, 16px);
+    }
+  }
+  &__live {
+    @include size(default, 105px, 28px);
+    @include border(all, 2px, solid, color("red"), 40px);
+    @include flex(row, center, center, nowrap);
+    margin-top: 2px;
+    @include respond-to(tablet) {
+      @include size(default, 135px, 36px);
+      margin-top: 6px;
+    }
+  }
+  &__live-text {
+    @include flex(row, flex-start, center, nowrap, 3.5px);
+    @extend %live;
+    @include respond-to(tablet) {
+      @include flex(row, flex-start, center, nowrap, 5.5px);
+    }
+  }
+  &__card {
+    @include respond-to(tablet) {
+      @include flex(row, space-between, top, nowrap, 16px);
+      margin-top: 32px;
+    }
+  }
+  &__card-content {
+    @include flex(column, flex-start, flex-start, nowrap, 16px);
+    @include respond-to(tablet) {
+      @include flex(column, flex-start, flex-start, nowrap, 32px);
+    }
+  }
+  &__card-img {
+    @include size(default, 296px);
+    @include axis-indent(margin, y, 32px);
+    @include respond-to(tablet) {
+      @include size(default, 460px);
+      @include axis-indent(margin, y, 0px);
+    }
+  }
+  &__user {
+    background-color: color("extra-white");
+    border-radius: 18px;
+    @include size(default, 170px, 46px);
+    @include flex(row, center, center, nowrap, 8px);
+    @include respond-to(tablet) {
+      @include size(default, 228px, 70px);
+      @include flex(row, center, center, nowrap, 16px);
+      border-radius: 23px;
+    }
+  }
+  &__user-name {
+    @extend %auction-user;
+    margin-top: 2px;
+  }
+  &__user-img {
+    @include size(default, 24px);
+    @include respond-to(tablet) {
+      @include size(default, 48px);
+    }
+  }
+  &__card-title {
+    @extend %auction-title;
+  }
+  &__price-time {
+    @include flex(column, flex-start, flex-start, nowrap, 16px);
+    @include respond-to(tablet) {
+      @include flex(column, flex-start, flex-start, nowrap, 32px);
+    }
+    @include respond-to(desktop) {
+      @include flex(ROW, flex-start, flex-start, nowrap, 32px);
+    }
+  }
+  &__price {
+    @include size(default, 174px, 126px);
+    @include flex(row, flex-start, center, nowrap, 16px);
+    background-color: color("extra-white");
+    border-radius: 18px;
+    @include respond-to(tablet) {
+      @include size(default, 296px, 174px);
+      border-radius: 40px;
+    }
+  }
+  &__price-info {
+    padding-left: 16px;
+    @include flex(column, center, flex-start, nowrap, 16px);
+    @include respond-to(tablet) {
+      padding-left: 32px;
+      display: block;
+    }
+  }
+  &__price-text {
+    @extend %auction-price-text;
+  }
+  &__crypto {
+    @extend %auction-crypto;
+    @include respond-to(tablet) {
+      margin-top: 16px;
+      margin-bottom: 6px;
+    }
+  }
+  &__dollar {
+    @extend %auction-dollar;
+  }
+  &__time {
+    @include size(default, 200px, 116px);
+    background-color: color("black");
+    border-radius: 18px;
+    @include respond-to(tablet) {
+      @include size(default, 460px, 174px);
+      @include flex(row, space-between, center, nowrap, 0px);
+      border-radius: 40px;
+    }
+  }
+  &__time-info {
+    @include flex(column, center, flex-start, nowrap, 16px);
+    @include axis-indent(padding, xy, 16px, 16px);
+    @include respond-to(tablet) {
+      @include axis-indent(padding, xy, 0px, 0px);
+      padding-left: 32px;
+    }
+  }
+  &__clock {
+    @include size(default, 168px, 0px);
+    @include flex(row, space-between, center, nowrap, 0px);
+    @include respond-to(tablet) {
+      @include size(default, 231px, 0px);
+    }
+  }
+  &__time-type {
+    @include flex(column, center, center, nowrap, 6px);
+  }
+  &__time-text {
+    @extend %auction-time-text;
+  }
+  &__clock-text {
+    @extend %auction-time-text;
+  }
+  &__clock-num {
+    @extend %auction-clock-num;
+  }
+  &__clock-img {
+    display: none;
+    @include respond-to(tablet) {
+      display: block;
+      padding-right: 32px;
+    }
+  }
+  &__gradient {
+    margin-top: 16px;
+    border-radius: 40px;
+    &:hover {
+      @include linear-gradient(180deg, color("blue-neon"), color("lime"));
+      @include size(default, fit-content);
+    }
+    @include respond-to(tablet) {
+      margin-top: 0px;
+    }
+  }
+  &__button {
+    @extend %auction-button;
+    background-color: color("blue-neon");
+    &:hover {
+      background-color: transparent;
+    }
+    &:active {
+      background-color: color("lime");
     }
   }
 }

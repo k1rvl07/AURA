@@ -3,7 +3,10 @@
 $colors-map: (
   "black": #070608,
   "blue-neon": #46f4db,
-  "lime": #57d272
+  "lime": #57d272,
+  "red": #d13130,
+  "grey": #95959d,
+  "extra-white": #ededf2
 );
 
 @function color($color-name) {
@@ -23,7 +26,18 @@ $font-weights-map: (
   "extra-black": 1000
 );
 
-$text-list: (title "Russo One" regular normal 35px 70px 70px white,);
+$text-list: (
+  title "Russo One" regular normal 35px 70px 70px white,
+  heading "Russo One" regular normal 30px 60px 60px color("black"),
+  live "Muller" bold normal 12px 16px 16px color("red"),
+  auction-user "Muller" bold normal 16px 20px 20px color("black"),
+  auction-title "Muller" regular normal 30px 48px 48px color("black"),
+  auction-price-text "Muller" bold normal 16px 20px 20px color("black"),
+  auction-crypto "Muller" bold normal 30px 48px 48px color("black"),
+  auction-dollar "Muller" bold normal 16px 20px 20px color("grey"),
+  auction-time-text "Muller" bold normal 16px 20px 20px white,
+  auction-clock-num "Muller" bold normal 30px 48px 48px white,
+);
 
 $link-list: (navbar-link "Muller" bold normal color("black") color("blue-neon") color("lime") 16px 20px 20px,);
 
@@ -32,6 +46,7 @@ $button-list: (
   navbar-button "Muller" bold normal 16px 16px 16px white color("black") 0px 31.5px 0px 17px 40px,
   main-button-buy "Muller" bold normal 16px 20px 20px color("black") color("black") 38.5px 54px 17px 25px 40px,
   main-button-author "Muller" bold normal 16px 20px 20px white color("black") 33.5px 49px 12px 20px 40px,
+  auction-button "Muller" bold normal 16px 20px 20px color("black") color("black") 26px 74px 15px 25px 40px,
 );
 
 // Сложные миксины
@@ -136,7 +151,8 @@ $button-list: (
   ),
   $width: 1px,
   $style: solid,
-  $color: null
+  $color: null,
+  $radius: null
 ) {
   @if $sides == all {
     border-width: $width;
@@ -150,6 +166,10 @@ $button-list: (
         border-#{$side}-color: $color;
       }
     }
+  }
+
+  @if $radius != null {
+    border-radius: $radius;
   }
 }
 
@@ -250,6 +270,7 @@ $button-list: (
   $border-radius: nth($item, 14);
 
   %#{$name} {
+    @extend %simple-transition;
     font-family: $font-family;
     @extend %#{$font-weight};
     font-style: $font-style;
@@ -310,19 +331,4 @@ $button-list: (
   &:active {
     transform: scale(0.9);
   }
-}
-
-%navbar-button {
-  @extend %simple-transition;
-  @extend %navbar-button;
-}
-
-%main-button-buy {
-  @extend %main-button-buy;
-  @extend %simple-transition;
-}
-
-%main-button-author {
-  @extend %main-button-author;
-  @extend %simple-transition;
 }
