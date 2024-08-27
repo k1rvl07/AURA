@@ -15,6 +15,18 @@
   @extend %heading;
 }
 
+.slider {
+  @extend %slider;
+
+  &__slides {
+    @extend %slides;
+  }
+
+  &__slide {
+    @extend %slide;
+  }
+}
+
 .header {
   &__logo {
     @include size(default, 75px, 30px);
@@ -121,7 +133,7 @@
   &__gradient {
     @include linear-gradient(180deg, color("blue-neon"), color("lime"));
     @include size(default, fit-content);
-    border-radius: 40px;
+    @include border-radius(40px);
   }
   &__button-author {
     @extend %main-button-author;
@@ -163,6 +175,9 @@
 
 .auction {
   @include axis-indent(padding, y, 80px);
+  @include respond-to(tablet) {
+    @include axis-indent(padding, y, 90px);
+  }
   &__bar {
     @include flex(row, flex-start, center, nowrap, 15px);
     @include respond-to(tablet) {
@@ -208,13 +223,13 @@
   }
   &__user {
     background-color: color("extra-white");
-    border-radius: 18px;
+    @include border-radius(18px);
     @include size(default, 170px, 46px);
     @include flex(row, center, center, nowrap, 8px);
     @include respond-to(tablet) {
       @include size(default, 228px, 70px);
       @include flex(row, center, center, nowrap, 16px);
-      border-radius: 23px;
+      @include border-radius(23px);
     }
   }
   &__user-name {
@@ -243,10 +258,10 @@
     @include size(default, 174px, 126px);
     @include flex(row, flex-start, center, nowrap, 16px);
     background-color: color("extra-white");
-    border-radius: 18px;
+    @include border-radius(18px);
     @include respond-to(tablet) {
       @include size(default, 296px, 174px);
-      border-radius: 40px;
+      @include border-radius(40px);
     }
   }
   &__price-info {
@@ -273,11 +288,11 @@
   &__time {
     @include size(default, 200px, 116px);
     background-color: color("black");
-    border-radius: 18px;
+    @include border-radius(18px);
     @include respond-to(tablet) {
       @include size(default, 460px, 174px);
       @include flex(row, space-between, center, nowrap, 0px);
-      border-radius: 40px;
+      @include border-radius(40px);
     }
   }
   &__time-info {
@@ -316,7 +331,7 @@
   }
   &__gradient {
     margin-top: 16px;
-    border-radius: 40px;
+    @include border-radius(40px);
     &:hover {
       @include linear-gradient(180deg, color("blue-neon"), color("lime"));
       @include size(default, fit-content);
@@ -326,13 +341,120 @@
     }
   }
   &__button {
-    @extend %auction-button;
+    @extend %main-button-noborder;
     background-color: color("blue-neon");
     &:hover {
       background-color: transparent;
     }
     &:active {
       background-color: color("lime");
+    }
+  }
+}
+
+.other-auction {
+  margin-bottom: 80px;
+  @include respond-to(tablet) {
+    margin-bottom: 90px;
+  }
+  &__heading {
+    @extend %oth-auc-heading;
+  }
+  &__button {
+    @extend %main-button-border;
+    margin-left: 48px;
+    margin-top: 32px;
+    @include border(all, 5px, solid, color("blue-neon"));
+    &:hover {
+      background-color: color("blue-neon");
+    }
+    &:active {
+      @include border(all, 5px, solid, color("lime"));
+      background-color: color("lime");
+    }
+    @include respond-to(tablet) {
+      margin-left: 328px;
+    }
+    @include respond-to(desktop) {
+      margin-left: 492px;
+    }
+  }
+  .slider {
+    margin-top: 32px;
+    @include size(default, 296px, 342px);
+    @include respond-to(tablet) {
+      @include size(default, fit-content);
+      overflow: hidden;
+    }
+    &__slides {
+      @include size(default, fit-content, 100%);
+      @include flex(row, space-between, center, nowrap, 20px);
+      @include respond-to(tablet) {
+        @include size(default, 952px, fit-content);
+        @include flex(row, space-between, center, wrap, 32px);
+      }
+      @include respond-to(desktop) {
+        @include size(default, 1280px, fit-content);
+      }
+    }
+    &__slide {
+      &:nth-child(7),
+      &:nth-child(8) {
+        display: none;
+      }
+      @include respond-to(desktop) {
+        &:nth-child(7),
+        &:nth-child(8) {
+          display: block;
+        }
+      }
+    }
+    &__nav {
+      @include flex(row, center, center, nowrap, 10px);
+      margin-top: 16px;
+      @include respond-to(tablet) {
+        display: none;
+      }
+    }
+    &__nav-item {
+      @include size(default, 10px);
+      @include border-radius(50%);
+      background-color: color("black");
+    }
+  }
+  .card {
+    @include size(default, 296px, 342px);
+    background-color: color("extra-white");
+    @include border-radius(40px);
+    @include flex(column, space-between, center, nowrap, 0px);
+    &__info {
+      background-color: color("black");
+      @include size(default, 296px, 168px);
+      @include border-radius(0px, 0px, 40px, 40px);
+      padding-top: 16px;
+      padding-left: 16px;
+    }
+    &__img {
+      margin-top: 7px;
+    }
+    &__user {
+      @include flex(row, flex-start, center, nowrap, 8px);
+    }
+    &__user-name {
+      @extend %oth-auc-user;
+    }
+    &__title {
+      @extend %oth-auc-title;
+      margin-top: 16px;
+      margin-bottom: 12px;
+    }
+    &__price {
+      @extend %oth-auc-price;
+      margin-bottom: 12px;
+    }
+    &__time {
+      @extend %oth-auc-time;
+      @include flex(row, flex-start, center, nowrap, 4px);
     }
   }
 }

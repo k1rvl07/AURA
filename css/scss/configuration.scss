@@ -37,16 +37,22 @@ $text-list: (
   auction-dollar "Muller" bold normal 16px 20px 20px color("grey"),
   auction-time-text "Muller" bold normal 16px 20px 20px white,
   auction-clock-num "Muller" bold normal 30px 48px 48px white,
+  oth-auc-heading "Russo One" regular normal 20px 20px 20px color("black"),
+  oth-auc-user "Muller" bold normal 16px 16px 16px white,
+  oth-auc-title "Muller" bold normal 20px 20px 20px white,
+  oth-auc-price "Muller" bold normal 20px 20px 20px color("blue-neon"),
+  oth-auc-time "Muller" bold normal 16px 16px 16px color("grey"),
 );
 
 $link-list: (navbar-link "Muller" bold normal color("black") color("blue-neon") color("lime") 16px 20px 20px,);
 
 $button-list: (
-  // button-namee font-family font-weight font-style font-size tablet-font-size desktop-font-size color second-color padding-x padding-x-tablet padding-y padding-y-tablet border border-radius
+  // button-name font-family font-weight font-style font-size tablet-font-size desktop-font-size color second-color padding-x padding-x-tablet padding-y padding-y-tablet border border-radius
   navbar-button "Muller" bold normal 16px 16px 16px white color("black") 0px 31.5px 0px 17px 40px,
   main-button-buy "Muller" bold normal 16px 20px 20px color("black") color("black") 38.5px 54px 17px 25px 40px,
   main-button-author "Muller" bold normal 16px 20px 20px white color("black") 33.5px 49px 12px 20px 40px,
-  auction-button "Muller" bold normal 16px 20px 20px color("black") color("black") 26px 74px 15px 25px 40px,
+  main-button-noborder "Muller" bold normal 16px 20px 20px color("black") color("black") 26px 74px 15px 25px 40px,
+  main-button-border "Muller" bold normal 20px 20px 20px color("black") color("black") 27px 75px 10px 20px 40px,
 );
 
 // Сложные миксины
@@ -141,35 +147,48 @@ $button-list: (
   }
 }
 
-@mixin border(
-  $sides: (
-    top,
-    right,
-    bottom,
-    left,
-    all
-  ),
-  $width: 1px,
-  $style: solid,
-  $color: null,
-  $radius: null
-) {
+@mixin border-radius($top-left: null, $top-right: null, $bottom-right: null, $bottom-left: null) {
+  @if $top-left != null and $top-right != null and $bottom-right != null and $bottom-left != null {
+    border-radius: $top-left $top-right $bottom-right $bottom-left;
+  } @else if $top-left != null {
+    @if type-of($top-left) == number and unit($top-left) != "" {
+      border-radius: $top-left;
+    }
+  } @else {
+    border-radius: 0;
+  }
+}
+
+@mixin border($sides: all, $width: 1px, $style: solid, $color: transparent, $radiuses...) {
   @if $sides == all {
     border-width: $width;
     border-style: $style;
-    border-color: $color;
+    @if $color != transparent {
+      border-color: $color;
+    }
+
+    @if $style != solid {
+      border-style: $style;
+    } @else if $style == SOLID {
+      border-style: solid;
+    }
   } @else {
     @each $side in $sides {
       border-#{$side}-width: $width;
       border-#{$side}-style: $style;
-      @if $color != null {
-        border-#{$side}-color: $color;
-      }
+    }
+    @if $color != transparent {
+      border-color: $color;
+    }
+
+    @if $style != solid {
+      border-style: $style;
+    } @else if $style == SOLID {
+      border-style: solid;
     }
   }
-
-  @if $radius != null {
-    border-radius: $radius;
+  @if length($radiuses) > 0 {
+    @include border-radius($radiuses...);
   }
 }
 
@@ -331,4 +350,20 @@ $button-list: (
   &:active {
     transform: scale(0.9);
   }
+}
+
+%slider {
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+%slides {
+  transition: transform 0.001s ease-in-out;
+}
+
+%slide {
+  scroll-snap-align: start;
+  overflow: hidden;
+  overflow-y: hidden;
+  position: relative;
 }
