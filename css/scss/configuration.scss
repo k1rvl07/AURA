@@ -9,6 +9,7 @@ $colors-map: (
   "red": #d13130,
   "white-red": #ff6f6f,
   "grey": #95959d,
+  "dark-grey": #37373e,
   "extra-white": #ededf2
 );
 
@@ -26,7 +27,7 @@ $font-weights-map: (
   "bold": 700,
   "extra-bold": 800,
   "black": 900,
-  "extra-black": 1000
+  "extra-black": 1000,
 );
 
 $text-list: (
@@ -45,6 +46,8 @@ $text-list: (
   oth-auc-title "Muller" bold normal 20px 20px 20px white,
   oth-auc-price "Muller" bold normal 20px 20px 20px color("blue-neon"),
   oth-auc-time "Muller" bold normal 16px 16px 16px color("grey"),
+  condition-heading "Muller" bold normal 20px 24px 24px white,
+  condition-text "Muller" regular normal 16px 18px 18px white,
   footer-copyright "Muller" regular normal 12px 12px 12px color("extra-white"),
 );
 

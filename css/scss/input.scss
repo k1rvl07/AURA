@@ -598,3 +598,56 @@
     }
   }
 }
+
+.condition {
+  background-color: color("dark-grey");
+  @include axis-indent(padding, y, 32px);
+  &__heading {
+    @extend %condition-heading;
+  }
+  &__text {
+    @extend %condition-text;
+  }
+  &__content {
+    @include flex(column, flex-start, flex-start, nowrap, 32px);
+    @include respond-to(tablet) {
+      @include flex(ROW, space-between, center, nowrap, 32px);
+    }
+  }
+  &__info {
+    @include flex(column, flex-start, flex-start, nowrap, 16px);
+  }
+  &__text {
+    @include flex(row, flex-start, center, nowrap, 8px);
+  }
+  &__icon {
+    @include size(default, 32px);
+  }
+  &__img-container {
+    position: relative;
+    @include size(default, 300px, 103px);
+    overflow: hidden;
+    @include respond-to(tablet) {
+      @include size(default, 460px, 160px);
+    }
+  }
+  &__img {
+    @include size(default, 103px);
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        right: ($i - 1) * 48px;
+      }
+    }
+    @include respond-to(tablet) {
+      @include size(default, 160px);
+      @for $i from 1 through 5 {
+        &:nth-child(#{$i}) {
+          right: ($i - 1) * 75px;
+        }
+      }
+    }
+  }
+}

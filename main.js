@@ -152,3 +152,24 @@ newNavItems.forEach((item, i) => {
 });
 
 updateNewNavIndicators(newCurrentIndex);
+
+$(document).ready(function () {
+    let index = 0;
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                observer.unobserve(entry.target);
+                $(entry.target).delay(150 * index).animate({
+                    opacity: 1
+                }, 200);
+                index++;
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+
+    $('.condition__img').each(function () {
+        observer.observe(this);
+    });
+});

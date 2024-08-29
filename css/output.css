@@ -94,11 +94,11 @@ legend {
   display: block;
 }
 
-.footer__copyright, .other-auction__heading, .auction__card-title, .heading, .main__title {
+.footer__copyright, .condition__text, .other-auction__heading, .auction__card-title, .heading, .main__title {
   font-weight: 400;
 }
 
-.new-stickers .slider__nav-button, .other-auction__button, .auction__button, .main__button-author, .main__button-buy, .header__button, .footer .navbar__link, .header .navbar__link, .other-auction .card__time, .other-auction .card__price, .other-auction .card__title, .other-auction .card__user-name, .auction__clock-num, .auction__clock-text, .auction__time-text, .auction__dollar, .auction__crypto, .auction__price-text, .auction__user-name, .auction__live-text {
+.new-stickers .slider__nav-button, .other-auction__button, .auction__button, .main__button-author, .main__button-buy, .header__button, .footer .navbar__link, .header .navbar__link, .condition__heading, .other-auction .card__time, .other-auction .card__price, .other-auction .card__title, .other-auction .card__user-name, .auction__clock-num, .auction__clock-text, .auction__time-text, .auction__dollar, .auction__crypto, .auction__price-text, .auction__user-name, .auction__live-text {
   font-weight: 700;
 }
 
@@ -255,6 +255,30 @@ legend {
   font-style: normal;
   font-size: 16px;
   color: #95959d;
+}
+
+.condition__heading {
+  font-family: "Muller";
+  font-style: normal;
+  font-size: 20px;
+  color: white;
+}
+@media only screen and (min-width: 1024px) {
+  .condition__heading {
+    font-size: 24px;
+  }
+}
+
+.condition__text {
+  font-family: "Muller";
+  font-style: normal;
+  font-size: 16px;
+  color: white;
+}
+@media only screen and (min-width: 1024px) {
+  .condition__text {
+    font-size: 18px;
+  }
 }
 
 .footer__copyright {
@@ -1321,5 +1345,97 @@ legend {
 @media only screen and (min-width: 1920px) {
   .footer__copyright {
     margin-left: 600px;
+  }
+}
+
+.condition {
+  background-color: #37373e;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+.condition__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-items: flex-start;
+  gap: 32px;
+}
+@media only screen and (min-width: 1024px) {
+  .condition__content {
+    display: flex;
+    flex-direction: ROW;
+    justify-content: space-between;
+    gap: 32px;
+  }
+}
+.condition__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+}
+.condition__text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.condition__icon {
+  width: 32px;
+  height: 32px;
+}
+.condition__img-container {
+  position: relative;
+  width: 300px;
+  height: 103px;
+  overflow: hidden;
+}
+@media only screen and (min-width: 1024px) {
+  .condition__img-container {
+    width: 460px;
+    height: 160px;
+  }
+}
+.condition__img {
+  width: 103px;
+  height: 103px;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.condition__img:nth-child(1) {
+  right: 0px;
+}
+.condition__img:nth-child(2) {
+  right: 48px;
+}
+.condition__img:nth-child(3) {
+  right: 96px;
+}
+.condition__img:nth-child(4) {
+  right: 144px;
+}
+.condition__img:nth-child(5) {
+  right: 192px;
+}
+@media only screen and (min-width: 1024px) {
+  .condition__img {
+    width: 160px;
+    height: 160px;
+  }
+  .condition__img:nth-child(1) {
+    right: 0px;
+  }
+  .condition__img:nth-child(2) {
+    right: 75px;
+  }
+  .condition__img:nth-child(3) {
+    right: 150px;
+  }
+  .condition__img:nth-child(4) {
+    right: 225px;
+  }
+  .condition__img:nth-child(5) {
+    right: 300px;
   }
 }
