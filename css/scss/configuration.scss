@@ -27,8 +27,12 @@ $font-weights-map: (
   "bold": 700,
   "extra-bold": 800,
   "black": 900,
-  "extra-black": 1000,
+  "extra-black": 1000
 );
+
+@function font-weight($weight-name) {
+  @return map-get($font-weights-map, $weight-name);
+}
 
 $text-list: (
   title "Russo One" regular normal 35px 70px 70px white,
@@ -46,15 +50,18 @@ $text-list: (
   oth-auc-title "Muller" bold normal 20px 20px 20px white,
   oth-auc-price "Muller" bold normal 20px 20px 20px color("blue-neon"),
   oth-auc-time "Muller" bold normal 16px 16px 16px color("grey"),
+  best-sellers-user "Muller" bold normal 16px 16px 16px color("black"),
+  best-sellers-title "Muller" bold normal 20px 48px 48px color("black"),
+  best-sellers-price "Muller" bold normal 12px 20px 20px color("black"),
   condition-heading "Muller" bold normal 20px 24px 24px white,
   condition-text "Muller" regular normal 16px 18px 18px white,
-  footer-copyright "Muller" regular normal 12px 12px 12px color("extra-white"),
+  footer-copyright "Muller" regular normal 12px 12px 12px color("extra-white")
 );
 
 $link-list: (
   header-navbar-link "Muller" bold normal color("black") color("blue-neon") color("lime") 16px 20px 20px,
   footer-navbar-link "Muller" bold normal color("black") color("lighten-blue-neon") color("extra-light-blue-neon") 16px
-    20px 20px,
+    20px 20px
 );
 
 $button-list: (
@@ -64,22 +71,23 @@ $button-list: (
   main-button-author "Muller" bold normal 16px 20px 20px white color("black") 33.5px 49px 12px 20px 40px,
   main-button-noborder "Muller" bold normal 16px 20px 20px color("black") color("black") 26px 74px 15px 25px 40px,
   main-button-border "Muller" bold normal 20px 20px 20px color("black") color("black") 27px 75px 10px 20px 40px,
-  new-stickers-button "Muller" bold normal 12px 16px 16px white white 13px 22px 6px 8px 40px,
+  new-stickers-button "Muller" bold normal 12px 16px 16px white white 13px 22px 6px 8px 40px
 );
 
 // Сложные миксины
 
+$breakpoints: (
+  tablet: 1024px,
+  desktop: 1920px
+);
+
 @mixin respond-to($media) {
-  @if $media == tablet {
-    @media only screen and (min-width: 1024px) {
-      @content;
-    }
-  } @else if $media == desktop {
-    @media only screen and (min-width: 1920px) {
+  @if map-has-key($breakpoints, $media) {
+    @media only screen and (min-width: map-get($breakpoints, $media)) {
       @content;
     }
   } @else {
-    @warn "'#{ $media }' is not a valid media query.";
+    @warn "'#{ $media }' is not a valid media query. Available breakpoints: #{map-keys($breakpoints)}";
   }
 }
 
@@ -102,47 +110,33 @@ $button-list: (
   }
 }
 
-@mixin flex($direction: row, $justify: flex-start, $align: flex-start, $wrap: nowrap, $gap: 0px) {
-  display: flex;
+@mixin flex($flex: on, $direction: null, $justify: null, $align: null, $wrap: null, $gap: null) {
+  @if $flex == on {
+    display: flex;
+  }
 
-  @if $direction != row {
+  @if $direction != null {
     flex-direction: $direction;
-  } @else if $direction == ROW {
-    flex-direction: row;
   }
 
-  @if $justify != flex-start {
+  @if $justify != null {
     justify-content: $justify;
-  } @else if $justify == FLEX-START {
-    justify-content: flex-start;
   }
 
-  @if ($direction == row or $direction == row-reverse) and $align != flex-start {
-    align-items: $align;
-  } @else if $direction != row and $direction != row-reverse and $align == flex-start {
-    align-items: $align;
-  } @else if $align == FLEX-START {
-    align-items: flex-start;
-  }
-
-  @if $direction == column {
+  @if $align != null {
     align-items: $align;
   }
 
-  @if $wrap != nowrap {
+  @if $wrap != null {
     flex-wrap: $wrap;
-  } @else if $wrap == NOWRAP {
-    flex-wrap: nowrap;
   }
 
-  @if $gap != 0px {
+  @if $gap != null {
     gap: $gap;
-  } @else if $gap == null {
-    gap: 0;
   }
 }
 
-@mixin axis-indent($type, $axis, $value, $yvalue: 0px) {
+@mixin axis-indent($type, $axis, $value, $yvalue: null) {
   @if $axis == x {
     #{$type}-left: $value;
     #{$type}-right: $value;
@@ -152,8 +146,10 @@ $button-list: (
   } @else if $axis == xy {
     #{$type}-left: $value;
     #{$type}-right: $value;
-    #{$type}-top: $yvalue;
-    #{$type}-bottom: $yvalue;
+    @if $yvalue != null {
+      #{$type}-top: $yvalue;
+      #{$type}-bottom: $yvalue;
+    }
   } @else {
     @warn "'#{ $axis }' is not a valid axis.";
   }
@@ -166,46 +162,36 @@ $button-list: (
     @if type-of($top-left) == number and unit($top-left) != "" {
       border-radius: $top-left;
     }
-  } @else {
-    border-radius: 0;
   }
 }
 
-@mixin border($sides: all, $width: 1px, $style: solid, $color: transparent, $radiuses...) {
+@mixin border($sides: null, $width: null, $style: null, $color: null, $radiuses...) {
   @if $sides == all {
-    border-width: $width;
-    border-style: $style;
-    @if $color != transparent {
-      border-color: $color;
+    @if $width != null {
+      border-width: $width;
     }
-
-    @if $style != solid {
+    @if $style != null {
       border-style: $style;
-    } @else if $style == SOLID {
-      border-style: solid;
+    }
+    @if $color != null {
+      border-color: $color;
     }
   } @else {
     @each $side in $sides {
-      border-#{$side}-width: $width;
-      border-#{$side}-style: $style;
-    }
-    @if $color != transparent {
-      border-color: $color;
-    }
-
-    @if $style != solid {
-      border-style: $style;
-    } @else if $style == SOLID {
-      border-style: solid;
+      @if $width != null {
+        border-#{$side}-width: $width;
+      }
+      @if $style != null {
+        border-#{$side}-style: $style;
+      }
+      @if $color != null {
+        border-#{$side}-color: $color;
+      }
     }
   }
   @if length($radiuses) > 0 {
     @include border-radius($radiuses...);
   }
-}
-
-@mixin linear-gradient($direction, $args...) {
-  background: linear-gradient($direction, $args);
 }
 
 // Простые миксины
@@ -230,7 +216,7 @@ $button-list: (
 
   %#{$name} {
     font-family: $font;
-    @extend %#{$font-weight};
+    font-weight: font-weight($font-weight);
     font-style: $font-style;
     font-size: $font-size;
     color: $color;
@@ -262,7 +248,7 @@ $button-list: (
   %#{$name} {
     @extend %simple-transition;
     font-family: $font;
-    @extend %#{$font-weight};
+    font-weight: font-weight($font-weight);
     font-style: $font-style;
     color: $color;
     font-size: $font-size;
@@ -304,7 +290,7 @@ $button-list: (
   %#{$name} {
     @extend %simple-transition;
     font-family: $font-family;
-    @extend %#{$font-weight};
+    font-weight: font-weight($font-weight);
     font-style: $font-style;
     color: $color;
     font-size: $font-size;

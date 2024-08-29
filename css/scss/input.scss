@@ -36,12 +36,12 @@
   }
   &__bar {
     @include border(bottom, 1px, solid, #c4c4c4);
-    @include flex(row, space-between, center);
+    @include flex(on, $justify: space-between, $align: center);
     @include axis-indent(padding, y, 17px);
     @include respond-to(tablet) {
       @include border(bottom, 0);
       @include axis-indent(padding, y, 15px);
-      @include flex(row, FLEX-START, center, nowrap);
+      @include flex($justify: flex-start);
     }
     .navbar {
       display: none;
@@ -85,9 +85,9 @@
       @extend %header-navbar-link;
     }
     &__list {
-      @include flex(row, space-between, center);
+      @include flex(on, $justify: space-between, $align: center);
       @include respond-to(tablet) {
-        @include flex(row, space-between, center, nowrap, 32px);
+        @include flex($gap: 32px);
       }
     }
   }
@@ -113,10 +113,10 @@
     }
   }
   &__buttons {
-    @include flex(column, flex-start, flex-start, nowrap, 16px);
+    @include flex(on, column, flex-start, $align: flex-start, $gap: 16px);
     padding-bottom: 64px;
     @include respond-to(tablet) {
-      @include flex(ROW, flex-start, center, nowrap, 32px);
+      @include flex($direction: row, $align: center, $gap: 32px);
       padding-bottom: 160px;
     }
   }
@@ -130,7 +130,7 @@
     }
   }
   &__gradient {
-    @include linear-gradient(180deg, color("blue-neon"), color("lime"));
+    background: linear-gradient(180deg, color("blue-neon"), color("lime"));
     @include size(default, fit-content);
     @include border-radius(40px);
   }
@@ -178,15 +178,15 @@
     @include axis-indent(padding, y, 90px);
   }
   &__bar {
-    @include flex(row, flex-start, center, nowrap, 15px);
+    @include flex(on, $align: center, $gap: 15px);
     @include respond-to(tablet) {
-      @include flex(row, flex-start, center, nowrap, 16px);
+      @include flex($gap: 16px);
     }
   }
   &__live {
     @include size(default, 105px, 28px);
     @include border(all, 2px, solid, color("red"), 40px);
-    @include flex(row, center, center, nowrap);
+    @include flex(on, $justify: center, $align: center);
     margin-top: 2px;
     @include respond-to(tablet) {
       @include size(default, 135px, 36px);
@@ -194,22 +194,22 @@
     }
   }
   &__live-text {
-    @include flex(row, flex-start, center, nowrap, 3.5px);
+    @include flex(on, $align: center, $gap: 3.5px);
     @extend %live;
     @include respond-to(tablet) {
-      @include flex(row, flex-start, center, nowrap, 5.5px);
+      @include flex($gap: 5.5px);
     }
   }
   &__card {
     @include respond-to(tablet) {
-      @include flex(row, space-between, top, nowrap, 16px);
+      @include flex(on, $justify: space-between, $align: top, $gap: 16px);
       margin-top: 32px;
     }
   }
   &__card-content {
-    @include flex(column, flex-start, flex-start, nowrap, 16px);
+    @include flex(on, column, $gap: 16px);
     @include respond-to(tablet) {
-      @include flex(column, flex-start, flex-start, nowrap, 32px);
+      @include flex($gap: 32px);
     }
   }
   &__card-img {
@@ -224,10 +224,10 @@
     background-color: color("extra-white");
     @include border-radius(18px);
     @include size(default, 170px, 46px);
-    @include flex(row, center, center, nowrap, 8px);
+    @include flex(on, $justify: center, $align: center, $gap: 8px);
     @include respond-to(tablet) {
       @include size(default, 228px, 70px);
-      @include flex(row, center, center, nowrap, 16px);
+      @include flex($gap: 16px);
       @include border-radius(23px);
     }
   }
@@ -245,17 +245,17 @@
     @extend %auction-title;
   }
   &__price-time {
-    @include flex(column, flex-start, flex-start, nowrap, 16px);
+    @include flex(on, column, $gap: 16px);
     @include respond-to(tablet) {
-      @include flex(column, flex-start, flex-start, nowrap, 32px);
+      @include flex($gap: 32px);
     }
     @include respond-to(desktop) {
-      @include flex(ROW, flex-start, flex-start, nowrap, 32px);
+      @include flex($direction: row);
     }
   }
   &__price {
     @include size(default, 174px, 126px);
-    @include flex(row, flex-start, center, nowrap, 16px);
+    @include flex(on, $align: center, $gap: 16px);
     background-color: color("extra-white");
     @include border-radius(18px);
     @include respond-to(tablet) {
@@ -265,7 +265,7 @@
   }
   &__price-info {
     padding-left: 16px;
-    @include flex(column, center, flex-start, nowrap, 16px);
+    @include flex(on, column, center, $gap: 16px);
     @include respond-to(tablet) {
       padding-left: 32px;
       display: block;
@@ -290,12 +290,12 @@
     @include border-radius(18px);
     @include respond-to(tablet) {
       @include size(default, 460px, 174px);
-      @include flex(row, space-between, center, nowrap, 0px);
+      @include flex(on, $justify: space-between, $align: center);
       @include border-radius(40px);
     }
   }
   &__time-info {
-    @include flex(column, center, flex-start, nowrap, 16px);
+    @include flex(on, column, center, $gap: 16px);
     @include axis-indent(padding, xy, 16px, 16px);
     @include respond-to(tablet) {
       @include axis-indent(padding, xy, 0px, 0px);
@@ -304,13 +304,13 @@
   }
   &__clock {
     @include size(default, 168px, 0px);
-    @include flex(row, space-between, center, nowrap, 0px);
+    @include flex(on, $justify: space-between, $align: center);
     @include respond-to(tablet) {
       @include size(default, 231px, 0px);
     }
   }
   &__time-type {
-    @include flex(column, center, center, nowrap, 6px);
+    @include flex(on, column, center, center, $gap: 6px);
   }
   &__time-text {
     @extend %auction-time-text;
@@ -332,7 +332,7 @@
     margin-top: 16px;
     @include border-radius(40px);
     &:hover {
-      @include linear-gradient(180deg, color("blue-neon"), color("lime"));
+      background: linear-gradient(180deg, color("blue-neon"), color("lime"));
       @include size(default, fit-content);
     }
     @include respond-to(tablet) {
@@ -387,10 +387,10 @@
     }
     &__slides {
       @include size(default, fit-content, 100%);
-      @include flex(row, space-between, center, nowrap, 20px);
+      @include flex(on, $justify: space-between, $align: center, $gap: 20px);
       @include respond-to(tablet) {
         @include size(default, 952px, fit-content);
-        @include flex(row, space-between, center, wrap, 32px);
+        @include flex($wrap: wrap, $gap: 32px);
       }
       @include respond-to(desktop) {
         @include size(default, 1280px, fit-content);
@@ -409,7 +409,7 @@
       }
     }
     &__nav {
-      @include flex(row, center, center, nowrap, 10px);
+      @include flex(on, $justify: center, $align: center, $gap: 10px);
       margin-top: 16px;
       @include respond-to(tablet) {
         display: none;
@@ -426,7 +426,7 @@
     @include size(default, 296px, 342px);
     background-color: color("extra-white");
     @include border-radius(40px);
-    @include flex(column, space-between, center, nowrap, 0px);
+    @include flex(on, column, space-between, center);
     &__info {
       background-color: color("black");
       @include size(default, 296px, 168px);
@@ -438,7 +438,7 @@
       margin-top: 7px;
     }
     &__user {
-      @include flex(row, flex-start, center, nowrap, 8px);
+      @include flex(on, $align: center, $gap: 8px);
     }
     &__user-name {
       @extend %oth-auc-user;
@@ -454,7 +454,7 @@
     }
     &__time {
       @extend %oth-auc-time;
-      @include flex(row, flex-start, center, nowrap, 4px);
+      @include flex(on, $align: center, $gap: 4px);
     }
   }
 }
@@ -468,9 +468,9 @@
   }
   &__heading {
     color: white;
-    @include flex(row, flex-start, center, nowrap, 8px);
+    @include flex(on, $align: center, $gap: 8px);
     @include respond-to(tablet) {
-      @include flex(row, flex-start, center, nowrap, 16px);
+      @include flex($gap: 16px);
     }
   }
   &__fire {
@@ -493,7 +493,7 @@
   .slider {
     @include axis-indent(margin, y, 32px);
     @include size(default, 296px, 143px);
-    @include flex(row, flex-start, center, nowrap, 0px);
+    @include flex(on, $align: center);
     @include respond-to(tablet) {
       @include size(default, 952px, 223px);
       overflow-x: hidden;
@@ -506,10 +506,10 @@
     }
     &__slides {
       @include size(default, fit-content, 143px);
-      @include flex(row, flex-start, center, nowrap, 20px);
+      @include flex(on, $align: center, $gap: 20px);
     }
     &__slide {
-      @include flex(row, center, center, nowrap, 0px);
+      @include flex(on, $justify: center, $align: center);
       @include size(default, 296px, 143px);
       @include respond-to(tablet) {
         @include size(default, 952px, 223px);
@@ -523,7 +523,7 @@
       }
     }
     &__nav {
-      @include flex(row, center, center, nowrap, 12px);
+      @include flex(on, $justify: center, $align: center, $gap: 12px);
       margin-top: 32px;
       @include respond-to(tablet) {
         margin-top: 64px;
@@ -550,51 +550,97 @@
   }
 }
 
-.footer {
-  background-color: color("blue-neon");
-  &__logo {
-    @include axis-indent(margin, y, 20px);
-    @include size(default, 75px, 30px);
+.best-sellers {
+  background-color: color("black");
+  @include axis-indent(padding, y, 32px);
+  @include respond-to(tablet) {
+    @include axis-indent(padding, y, 90px);
+  }
+  &__heading {
+    color: white;
+    margin-bottom: 16px;
     @include respond-to(tablet) {
-      @include axis-indent(margin, y, 0px);
-      @include size(default, 100px, 40px);
+      margin-bottom: 32px;
     }
   }
-  &__content {
-    @include flex(column, center, center);
+  &__cards {
+    @include flex(on, $justify: space-between, $align: center, $wrap: wrap, $gap: 16px);
     @include respond-to(tablet) {
-      @include flex(ROW, space-between, center);
-      @include axis-indent(padding, y, 20px);
+      @include flex($gap: 0px);
     }
   }
-  .navbar {
-    &__list {
-      @include flex(row, space-between, center, nowrap, 0px);
-      @include axis-indent(padding, y, 10px);
-      @include border(top, 1px, solid, color("black"));
-      @include size(default, 300px, fit-content);
-      @include respond-to(tablet) {
-        @include axis-indent(padding, y, 0px);
-        @include border(top, 0px);
-        @include size(default, 320px, fit-content);
+  .card {
+    @include size(default, 132px, 226px);
+    background-color: color("extra-white");
+    @include border-radius(18px);
+    @include flex(on, column, space-between, center);
+    @include respond-to(tablet) {
+      @include size(default, 460px, 174px);
+      @include flex($direction: row-reverse);
+      @include border-radius(40px);
+      @for $i from 3 through 6 {
+        &:nth-child(#{$i}) {
+          margin-top: 32px;
+        }
       }
     }
-    &__link {
-      @extend %footer-navbar-link;
-    }
-  }
-  &__black {
-    background-color: color("black");
-  }
-  &__copyright {
-    margin-left: 120px;
-    @extend %footer-copyright;
-    @include axis-indent(padding, y, 8px);
-    @include respond-to(tablet) {
-      margin-left: 436px;
-    }
     @include respond-to(desktop) {
-      margin-left: 600px;
+      @include size(default, 624px, 174px);
+    }
+    &__info {
+      background-color: white;
+      @include size(default, 132px, 118px);
+      @include border-radius(0px, 0px, 18px, 18px);
+      margin-top: auto;
+      z-index: 999;
+      padding-left: 16px;
+      padding-top: 16px;
+      @include respond-to(tablet) {
+        @include size(default, 318px, 174px);
+        padding-left: 32px;
+        padding-top: 32px;
+        @include border-radius(0px, 40px, 40px, 0px);
+      }
+      @include respond-to(desktop) {
+        @include size(default, 482px, 174px);
+      }
+    }
+    &__img {
+      @include size(default, 108px);
+      margin-top: 12px;
+      position: absolute;
+      @include respond-to(tablet) {
+        margin-right: 303px;
+        margin-top: 0;
+        @include size(default, 142px);
+      }
+      @include respond-to(desktop) {
+        margin-right: 467px;
+      }
+    }
+    &__user {
+      @include flex(on, $align: center, $gap: 8px);
+    }
+    &__user-name {
+      @extend %best-sellers-user;
+    }
+    &__title {
+      @extend %best-sellers-title;
+      margin-top: 8px;
+      margin-bottom: 7px;
+      @include respond-to(tablet) {
+        @include axis-indent(margin, y, 9px);
+      }
+    }
+    &__price {
+      @extend %best-sellers-price;
+      @include flex(on, column, $gap: 3px);
+      @include respond-to(tablet) {
+        @include flex($direction: row, $align: center);
+      }
+    }
+    &__dollar {
+      color: color("grey");
     }
   }
 }
@@ -609,16 +655,16 @@
     @extend %condition-text;
   }
   &__content {
-    @include flex(column, flex-start, flex-start, nowrap, 32px);
+    @include flex(on, column, $gap: 32px);
     @include respond-to(tablet) {
-      @include flex(ROW, space-between, center, nowrap, 32px);
+      @include flex($direction: row, $justify: space-between, $align: center);
     }
   }
   &__info {
-    @include flex(column, flex-start, flex-start, nowrap, 16px);
+    @include flex(on, column, $gap: 16px);
   }
   &__text {
-    @include flex(row, flex-start, center, nowrap, 8px);
+    @include flex(on, $align: center, $gap: 8px);
   }
   &__icon {
     @include size(default, 32px);
@@ -648,6 +694,55 @@
           right: ($i - 1) * 75px;
         }
       }
+    }
+  }
+}
+
+.footer {
+  background-color: color("blue-neon");
+  &__logo {
+    @include axis-indent(margin, y, 20px);
+    @include size(default, 75px, 30px);
+    @include respond-to(tablet) {
+      @include axis-indent(margin, y, 0px);
+      @include size(default, 100px, 40px);
+    }
+  }
+  &__content {
+    @include flex(on, column, center, center);
+    @include respond-to(tablet) {
+      @include flex(on, row, space-between);
+      @include axis-indent(padding, y, 20px);
+    }
+  }
+  .navbar {
+    &__list {
+      @include flex(on, $justify: space-between, $align: center);
+      @include axis-indent(padding, y, 10px);
+      @include border(top, 1px, solid, color("black"));
+      @include size(default, 300px, fit-content);
+      @include respond-to(tablet) {
+        @include axis-indent(padding, y, 0px);
+        @include border(top, 0px);
+        @include size(default, 320px, fit-content);
+      }
+    }
+    &__link {
+      @extend %footer-navbar-link;
+    }
+  }
+  &__black {
+    background-color: color("black");
+  }
+  &__copyright {
+    margin-left: 120px;
+    @extend %footer-copyright;
+    @include axis-indent(padding, y, 8px);
+    @include respond-to(tablet) {
+      margin-left: 436px;
+    }
+    @include respond-to(desktop) {
+      margin-left: 600px;
     }
   }
 }
