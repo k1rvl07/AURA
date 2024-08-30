@@ -239,14 +239,14 @@ $(document).ready(function () {
         const windowWidth = $(window).width();
 
         if (windowWidth >= 1024 && windowWidth < 1920) {
-            $('.subscribe__img:nth-child(2)').css('top', '390px');
+            $('.subscribe__img:nth-child(2)').css('top', '396px');
             $('.subscribe__img:nth-child(3)').css('top', '-220px');
-            $('.subscribe__img:nth-child(4)').css('top', '390px');
+            $('.subscribe__img:nth-child(4)').css('top', '396px');
             $('.subscribe__img:nth-child(5)').css('top', '-172px');
         } else if (windowWidth >= 1920) {
-            $('.subscribe__img:nth-child(2)').css('top', '392px');
-            $('.subscribe__img:nth-child(3)').css('top', '-360px');
-            $('.subscribe__img:nth-child(4)').css('top', '392px');
+            $('.subscribe__img:nth-child(2)').css('top', '398px');
+            $('.subscribe__img:nth-child(3)').css('top', '-362px');
+            $('.subscribe__img:nth-child(4)').css('top', '394px');
             $('.subscribe__img:nth-child(5)').css('top', '-294px');
         }
     }
@@ -327,6 +327,63 @@ $(document).ready(function () {
     $(window).resize(function () {
         checkBreakpointsSubscribe()
     });
+
+    // Создаем наблюдатель с указанным порогом видимости
+    function observeImagesAuthor(selector, threshold = 0.8) {
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const images = $(`.author__img`, entry.target);
+                    images.each((index, image) => {
+                        $(image).css({
+                            transform: 'scale(1)',
+                            opacity: 1,
+                            transition: 'transform 0.4s ease-in-out, opacity 0.4s ease-in-out',
+                            'transition-delay': `${index * 0.4}s`
+                        });
+                    });
+                    // Отключаем наблюдатель, чтобы он не вызывался повторно
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold });
+
+        // Наблюдаем за контейнерами
+        $(selector).each(function () {
+            observer.observe(this);
+        });
+
+        // Добавляем обработчик изменения размера окна
+        let lastWidth = $(window).width();
+        $(window).on('resize', function () {
+            const currentWidth = $(window).width();
+            if ((lastWidth < 1024 && currentWidth >= 1024) || (lastWidth >= 1024 && currentWidth < 1024) ||
+                (lastWidth < 1920 && currentWidth >= 1920) || (lastWidth >= 1920 && currentWidth < 1920)) {
+                resetAnimation(selector);
+            }
+            lastWidth = currentWidth;
+        });
+
+        // Функция для сброса анимации
+        function resetAnimation(selector) {
+            const containers = $(selector);
+            containers.each(function () {
+                const images = $(`.author__img`, this);
+                images.css({
+                    transform: 'scale(0.3)',
+                    opacity: 0,
+                    transition: 'none'
+                });
+            });
+            // Перезапускаем наблюдатель
+            containers.each(function () {
+                observer.unobserve(this);
+                observer.observe(this);
+            });
+        }
+    }
+
+    observeImagesAuthor('.author__img-container');
 
     // Функция для сброса анимации .condition__img
     let indexCondition = 0;

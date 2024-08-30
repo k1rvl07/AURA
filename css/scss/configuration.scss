@@ -9,6 +9,7 @@ $colors-map: (
   "red": #d13130,
   "white-red": #ff6f6f,
   "grey": #95959d,
+  "extra-grey": #717178,
   "dark-grey": #37373e,
   "extra-white": #ededf2
 );
@@ -52,6 +53,10 @@ $text-list: (
   oth-auc-time "Muller" bold normal 16px 16px 16px color("grey"),
   subscribe-text "Muller" bold normal 12px 12px 12px white,
   subscribe-input "Muller" regular normal 16px 20px 20px color("extra-white"),
+  author-subheading "Russo One" regular normal 20px 20px 20px color("black"),
+  author-text "Muller" regular normal 16px 20px 20px color("black"),
+  author-img-input "Muller" regular normal 16px 20px 20px color("grey"),
+  author-input "Muller" regular normal 16px 20px 20px color("extra-grey"),
   best-sellers-user "Muller" bold normal 16px 16px 16px color("black"),
   best-sellers-title "Muller" bold normal 20px 48px 48px color("black"),
   best-sellers-price "Muller" bold normal 12px 20px 20px color("black"),
@@ -67,13 +72,12 @@ $link-list: (
 );
 
 $button-list: (
-  // button-name font-family font-weight font-style font-size tablet-font-size desktop-font-size color second-color padding-x padding-x-tablet padding-y padding-y-tablet border border-radius
-  navbar-button "Muller" bold normal 16px 16px 16px white color("black") 0px 31.5px 0px 17px 40px,
-  main-button-buy "Muller" bold normal 16px 20px 20px color("black") color("black") 38.5px 54px 17px 25px 40px,
-  main-button-author "Muller" bold normal 16px 20px 20px white color("black") 33.5px 49px 12px 20px 40px,
-  main-button-noborder "Muller" bold normal 16px 20px 20px color("black") color("black") 26px 74px 15px 25px 40px,
-  main-button-border "Muller" bold normal 20px 20px 20px color("black") color("black") 27px 75px 10px 20px 40px,
-  new-stickers-button "Muller" bold normal 12px 16px 16px white white 13px 22px 6px 8px 40px
+  navbar-button "Muller" bold normal 16px 16px 16px white color("black") 132px 50px 132px 50px 40px,
+  main-button-buy "Muller" bold normal 16px 20px 20px color("black") color("black") 132px 50px 176px 70px 40px,
+  main-button-author "Muller" bold normal 16px 20px 20px white color("black") 164px 50px 247px 70px 40px,
+  button-noborder "Muller" bold normal 16px 20px 20px color("black") color("black") 200px 50px 296px 70px 40px,
+  button-border "Muller" bold normal 20px 20px 20px color("black") color("black") 200px 50px 296px 70px 40px,
+  new-stickers-button "Muller" bold normal 12px 16px 16px white white 52px 32px 52px 32px 40px
 );
 
 // Сложные миксины
@@ -283,10 +287,10 @@ $breakpoints: (
   $font-desktop-size: nth($item, 7);
   $color: nth($item, 8);
   $second-color: nth($item, 9);
-  $padding-x: nth($item, 10);
-  $padding-x-tablet: nth($item, 11);
-  $padding-y: nth($item, 12);
-  $padding-y-tablet: nth($item, 13);
+  $width: nth($item, 10);
+  $height: nth($item, 11);
+  $width-tablet: nth($item, 12);
+  $height-tablet: nth($item, 13);
   $border-radius: nth($item, 14);
 
   %#{$name} {
@@ -296,8 +300,8 @@ $breakpoints: (
     font-style: $font-style;
     color: $color;
     font-size: $font-size;
-    @include axis-indent(padding, x, $padding-x);
-    @include axis-indent(padding, y, $padding-y);
+    width: $width;
+    height: $height;
     border-radius: $border-radius;
     @if $font-size != $font-tablet-size {
       @include respond-to(tablet) {
@@ -310,8 +314,8 @@ $breakpoints: (
       }
     }
     @include respond-to(tablet) {
-      @include axis-indent(padding, x, $padding-x-tablet);
-      @include axis-indent(padding, y, $padding-y-tablet);
+      width: $width-tablet;
+      height: $height-tablet;
     }
     &:hover {
       color: $second-color;

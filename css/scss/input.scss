@@ -344,7 +344,7 @@
     }
   }
   &__button {
-    @extend %main-button-noborder;
+    @extend %button-noborder;
     background-color: color("blue-neon");
     &:hover {
       background-color: transparent;
@@ -361,7 +361,7 @@
     margin-bottom: 90px;
   }
   &__button {
-    @extend %main-button-border;
+    @extend %button-border;
     margin-left: 48px;
     margin-top: 32px;
     @include border(all, 5px, solid, color("blue-neon"));
@@ -616,7 +616,7 @@
     }
   }
   &__button {
-    @extend %main-button-noborder;
+    @extend %button-noborder;
     background-color: color("blue-neon");
     &:hover {
       background-color: transparent;
@@ -654,12 +654,12 @@
         display: block;
         rotate: 90deg;
         @include size(default, 126px);
-        top: 390px;
+        top: 396px;
         z-index: 20;
       }
       @include respond-to(desktop) {
         @include size(default, 218px);
-        top: 392px;
+        top: 398px;
       }
     }
     &:nth-child(3) {
@@ -673,7 +673,7 @@
         z-index: 30;
         @include respond-to(desktop) {
           @include size(default, 362px);
-          top: -360px;
+          top: -362px;
           left: 130px;
         }
       }
@@ -684,12 +684,12 @@
         display: block;
         rotate: -15deg;
         @include size(default, 188px);
-        top: 390px;
+        top: 396px;
         left: 148px;
         z-index: 50;
         @include respond-to(desktop) {
           @include size(default, 323px);
-          top: 392px;
+          top: 394px;
           left: 254px;
         }
       }
@@ -708,6 +708,190 @@
           top: -294px;
           left: 493px;
         }
+      }
+    }
+  }
+}
+
+.author {
+  @include axis-indent(margin, y, 80px);
+  @include respond-to(tablet) {
+    @include axis-indent(margin, y, 90px);
+  }
+  &__content {
+    @include flex(on, column, $gap: 16px);
+    @include respond-to(tablet) {
+      @include flex($gap: 32px);
+    }
+    @include respond-to(desktop) {
+      @include flex($direction: row, $align: end, $justify: space-between, $gap: 0px);
+    }
+    .author__img-container {
+      &:first-child {
+        @include respond-to(desktop) {
+          display: none;
+        }
+        .author__img {
+          &:nth-child(2) {
+            margin-left: 65px;
+          }
+          &:nth-child(3) {
+            margin-left: 130px;
+          }
+          @include respond-to(tablet) {
+            @include size(default, 296px, 213px);
+            &:nth-child(2) {
+              margin-left: 0px;
+              margin-top: 167px;
+            }
+            &:nth-child(3) {
+              margin-left: 0px;
+              margin-top: 334px;
+            }
+          }
+        }
+      }
+      &:last-child {
+        display: none;
+        margin-top: 16px;
+        @include respond-to(desktop) {
+          display: block;
+        }
+        .author__img {
+          @include size(default, 350px, 252px);
+          &:nth-child(2) {
+            margin-left: 137px;
+          }
+          &:nth-child(3) {
+            margin-left: 274px;
+          }
+        }
+      }
+    }
+  }
+  &__img {
+    @include size(default, 167px, 119px);
+    position: absolute;
+    transform: scale(0.3);
+    opacity: 0;
+    transition:
+      transform 0.4s ease-in-out,
+      opacity 0.4s ease-in-out;
+  }
+  &__img-container {
+    @include size(default, 296px, 119px);
+    position: relative;
+    @include respond-to(tablet) {
+      @include size(default, 296px, 547px);
+    }
+    @include respond-to(desktop) {
+      @include size(default, 624px, 252px);
+    }
+  }
+  &__info {
+    @include flex(on, column, $gap: 16px);
+  }
+  &__subheading {
+    @extend %author-subheading;
+    display: none;
+    @include respond-to(tablet) {
+      display: block;
+    }
+    @include respond-to(desktop) {
+      @include size(default, 500px, fit-content);
+    }
+  }
+  &__text {
+    @extend %author-text;
+    line-height: 150%;
+    @include size(default, 296px, fit-content);
+    @include respond-to(tablet) {
+      @include size(default, 788px, fit-content);
+    }
+    @include respond-to(desktop) {
+      @include size(default, 624px, fit-content);
+    }
+  }
+  &__text-bold {
+    font-weight: font-weight(bold);
+  }
+  &__gradient {
+    @include size(default, fit-content);
+    background: linear-gradient(180deg, color("blue-neon"), color("lime"));
+    @include border-radius(40px);
+  }
+  &__button {
+    @extend %button-noborder;
+    background-color: color("blue-neon");
+    &:hover {
+      background-color: transparent;
+    }
+    &:active {
+      background-color: color("lime");
+    }
+  }
+  &__form {
+    @include flex(on, column, $gap: 16px);
+    @include respond-to(tablet) {
+      @include flex($direction: row, $align: center, $justify: space-between, $gap: 0px);
+    }
+    @include respond-to(desktop) {
+      display: block;
+    }
+  }
+  .form {
+    @include flex(on, column, $gap: 16px);
+    @include respond-to(tablet) {
+      @include flex($gap: 32px);
+    }
+    &__img-input-container {
+      background-color: color("extra-white");
+      @include size(default, 296px, 200px);
+      @include border-radius(40px);
+      @include flex(on, column, $align: center, $justify: center, $gap: 16px);
+      @include respond-to(tablet) {
+        @include size(default, 624px, 342px);
+      }
+    }
+    &__img-input-content {
+      @include flex(on, column, $align: center, $justify: center, $gap: 16px);
+    }
+    &__img-input-button {
+      @extend %simple-transition;
+      @include size(default, 60px);
+      @include flex(on, $align: center, $justify: center);
+      color: color("extra-white");
+      background-color: white;
+      @include border(all, 2px, solid, white, 50%);
+      &:hover {
+        color: color("blue-neon");
+        @include border(all, $color: color("blue-neon"));
+      }
+      &:active {
+        color: color("lime");
+        @include border(all, $color: color("lime"));
+      }
+      @include respond-to(tablet) {
+        @include size(default, 100px);
+      }
+    }
+    &__img-input-icon {
+      @include respond-to(tablet) {
+        @include size(default, 40px);
+      }
+    }
+    &__img-input-text {
+      @extend %author-img-input;
+    }
+    &__input {
+      @extend %author-input;
+      background-color: color("extra-white");
+      @include border-radius(40px);
+      @include axis-indent(padding, xy, 32px, 17px);
+      @include size(default, 296px, 50px);
+      @include respond-to(tablet) {
+        @include size(default, 624px, 70px);
+        @include axis-indent(padding, y, 25px);
       }
     }
   }
