@@ -224,7 +224,7 @@ legend {
   }
 }
 
-.other-auction__heading {
+.second-heading {
   font-family: "Russo One";
   font-weight: 400;
   font-style: normal;
@@ -262,6 +262,27 @@ legend {
   font-style: normal;
   font-size: 16px;
   color: #95959d;
+}
+
+.subscribe .form__checkbox-text {
+  font-family: "Muller";
+  font-weight: 700;
+  font-style: normal;
+  font-size: 12px;
+  color: white;
+}
+
+.subscribe .form__input::placeholder, .subscribe .form__input {
+  font-family: "Muller";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  color: #ededf2;
+}
+@media only screen and (min-width: 1024px) {
+  .subscribe .form__input::placeholder, .subscribe .form__input {
+    font-size: 20px;
+  }
 }
 
 .best-sellers .card__user-name {
@@ -461,7 +482,7 @@ legend {
   color: #070608;
 }
 
-.auction__button {
+.subscribe__button, .auction__button {
   font-family: "Muller";
   font-weight: 700;
   font-style: normal;
@@ -474,22 +495,22 @@ legend {
   border-radius: 40px;
 }
 @media only screen and (min-width: 1024px) {
-  .auction__button {
+  .subscribe__button, .auction__button {
     font-size: 20px;
   }
 }
 @media only screen and (min-width: 1024px) {
-  .auction__button {
+  .subscribe__button, .auction__button {
     padding-left: 74px;
     padding-right: 74px;
     padding-top: 25px;
     padding-bottom: 25px;
   }
 }
-.auction__button:hover {
+.subscribe__button:hover, .auction__button:hover {
   color: #070608;
 }
-.auction__button:active {
+.subscribe__button:active, .auction__button:active {
   color: #070608;
 }
 
@@ -567,13 +588,13 @@ legend {
   }
 }
 
-.other-auction .slider__nav-item, .header__button-icon, .header .navbar__link, .footer .navbar__link, .header__button, .main__button-buy, .main__button-author, .auction__button, .other-auction__button, .new-stickers .slider__nav-button {
+.subscribe .form__input, .other-auction .slider__nav-item, .header__button-icon, .header .navbar__link, .footer .navbar__link, .header__button, .main__button-buy, .main__button-author, .subscribe__button, .auction__button, .other-auction__button, .new-stickers .slider__nav-button {
   transition: 0.3s;
 }
-.other-auction .slider__nav-item:hover, .header__button-icon:hover, .header .navbar__link:hover, .footer .navbar__link:hover, .header__button:hover, .main__button-buy:hover, .main__button-author:hover, .auction__button:hover, .other-auction__button:hover, .new-stickers .slider__nav-button:hover {
+.subscribe .form__input:hover, .other-auction .slider__nav-item:hover, .header__button-icon:hover, .header .navbar__link:hover, .footer .navbar__link:hover, .header__button:hover, .main__button-buy:hover, .main__button-author:hover, .subscribe__button:hover, .auction__button:hover, .other-auction__button:hover, .new-stickers .slider__nav-button:hover {
   transition: 0.3s;
 }
-.other-auction .slider__nav-item:active, .header__button-icon:active, .header .navbar__link:active, .footer .navbar__link:active, .header__button:active, .main__button-buy:active, .main__button-author:active, .auction__button:active, .other-auction__button:active, .new-stickers .slider__nav-button:active {
+.subscribe .form__input:active, .other-auction .slider__nav-item:active, .header__button-icon:active, .header .navbar__link:active, .footer .navbar__link:active, .header__button:active, .main__button-buy:active, .main__button-author:active, .subscribe__button:active, .auction__button:active, .other-auction__button:active, .new-stickers .slider__nav-button:active {
   transition: 0.05s;
 }
 
@@ -1299,6 +1320,217 @@ legend {
 .new-stickers .slider__nav-button:active {
   background-color: #d13130;
   border-color: #d13130;
+}
+
+.subscribe {
+  background-color: #d13130;
+  padding-top: 32px;
+}
+@media only screen and (min-width: 1024px) {
+  .subscribe {
+    padding-bottom: 32px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .subscribe__content {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+}
+.subscribe__heading {
+  color: white;
+  margin-bottom: 16px;
+}
+@media only screen and (min-width: 1024px) {
+  .subscribe__heading {
+    margin-bottom: 32px;
+  }
+}
+.subscribe .form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.subscribe .form__input {
+  background-color: #070608;
+  width: 296px;
+  height: 50px;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 17px;
+  padding-bottom: 17px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #070608;
+  border-radius: 40px;
+}
+.subscribe .form__input:active, .subscribe .form__input:focus {
+  background-color: transparent;
+  color: #070608;
+}
+@media only screen and (min-width: 1024px) {
+  .subscribe .form__input {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 460px;
+    height: 70px;
+  }
+}
+.subscribe .form__checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.subscribe .form__checkbox-button {
+  width: 14px;
+  height: 14px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.subscribe .form__checkbox-img {
+  opacity: 0;
+  transition: 0.3s;
+}
+.subscribe__gradient {
+  border-radius: 40px;
+}
+.subscribe__gradient:hover {
+  background: linear-gradient(180deg, #46f4db, #57d272);
+  width: fit-content;
+  height: fit-content;
+}
+.subscribe__button {
+  background-color: #46f4db;
+}
+.subscribe__button:hover {
+  background-color: transparent;
+}
+.subscribe__button:active {
+  background-color: #57d272;
+}
+.subscribe__img-container {
+  width: 296px;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+}
+@media only screen and (min-width: 1024px) {
+  .subscribe__img-container {
+    width: 460px;
+    height: 394px;
+    position: absolute;
+    left: 490px;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .subscribe__img-container {
+    width: 788px;
+    height: 394px;
+    left: 492px;
+  }
+}
+.subscribe__img {
+  position: absolute;
+}
+.subscribe__img:first-child {
+  transition: transform 0.5s ease-in-out;
+  top: 130px;
+}
+@media only screen and (min-width: 1024px) {
+  .subscribe__img:first-child {
+    display: none;
+  }
+}
+.subscribe__img:nth-child(2) {
+  display: none;
+}
+@media only screen and (min-width: 1024px) {
+  .subscribe__img:nth-child(2) {
+    display: block;
+    rotate: 90deg;
+    width: 126px;
+    height: 126px;
+    top: 390px;
+    z-index: 20;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .subscribe__img:nth-child(2) {
+    width: 218px;
+    height: 218px;
+    top: 392px;
+  }
+}
+.subscribe__img:nth-child(3) {
+  display: none;
+}
+@media only screen and (min-width: 1024px) {
+  .subscribe__img:nth-child(3) {
+    display: block;
+    rotate: 150deg;
+    width: 212px;
+    height: 212px;
+    top: -220px;
+    left: 76px;
+    z-index: 30;
+  }
+}
+@media only screen and (min-width: 1024px) and (min-width: 1920px) {
+  .subscribe__img:nth-child(3) {
+    width: 362px;
+    height: 362px;
+    top: -360px;
+    left: 130px;
+  }
+}
+.subscribe__img:nth-child(4) {
+  display: none;
+}
+@media only screen and (min-width: 1024px) {
+  .subscribe__img:nth-child(4) {
+    display: block;
+    rotate: -15deg;
+    width: 188px;
+    height: 188px;
+    top: 390px;
+    left: 148px;
+    z-index: 50;
+  }
+}
+@media only screen and (min-width: 1024px) and (min-width: 1920px) {
+  .subscribe__img:nth-child(4) {
+    width: 323px;
+    height: 323px;
+    top: 392px;
+    left: 254px;
+  }
+}
+.subscribe__img:nth-child(5) {
+  display: none;
+}
+@media only screen and (min-width: 1024px) {
+  .subscribe__img:nth-child(5) {
+    display: block;
+    rotate: 135deg;
+    width: 172px;
+    height: 172px;
+    top: -172px;
+    left: 286px;
+    z-index: 40;
+  }
+}
+@media only screen and (min-width: 1024px) and (min-width: 1920px) {
+  .subscribe__img:nth-child(5) {
+    width: 296px;
+    height: 296px;
+    top: -294px;
+    left: 493px;
+  }
 }
 
 .best-sellers {

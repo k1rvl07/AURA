@@ -15,6 +15,10 @@
   @extend %heading;
 }
 
+.second-heading {
+  @extend %second-heading;
+}
+
 .slider {
   @extend %slider;
 
@@ -356,9 +360,6 @@
   @include respond-to(tablet) {
     margin-bottom: 90px;
   }
-  &__heading {
-    @extend %oth-auc-heading;
-  }
   &__button {
     @extend %main-button-border;
     margin-left: 48px;
@@ -545,6 +546,168 @@
       &:active {
         background-color: color("red");
         border-color: color("red");
+      }
+    }
+  }
+}
+
+.subscribe {
+  background-color: color("red");
+  padding-top: 32px;
+  @include respond-to(tablet) {
+    padding-bottom: 32px;
+  }
+  &__content {
+    @include respond-to(tablet) {
+      @include flex(on, $align: center);
+      position: relative;
+    }
+  }
+  &__heading {
+    color: white;
+    margin-bottom: 16px;
+    @include respond-to(tablet) {
+      margin-bottom: 32px;
+    }
+  }
+  .form {
+    @include flex(on, column, $gap: 16px);
+    &__input {
+      @extend %simple-transition;
+      @extend %subscribe-input;
+      background-color: color("black");
+      @include size(default, 296px, 50px);
+      @include axis-indent(padding, xy, 32px, 17px);
+      @include border(all, 2px, solid, color("black"), 40px);
+      &:active,
+      &:focus {
+        background-color: transparent;
+        color: color("black");
+      }
+      @include respond-to(tablet) {
+        @include axis-indent(padding, y, 25px);
+        @include size(default, 460px, 70px);
+      }
+    }
+    &__input::placeholder {
+      @extend %subscribe-input;
+    }
+    &__checkbox-container {
+      @include flex(on, $align: center, $gap: 8px);
+    }
+    &__checkbox-text {
+      @extend %subscribe-text;
+    }
+    &__checkbox-button {
+      @include size(default, 14px);
+      @include border(all, 1px, solid, white);
+      @include flex(on, $align: center, $justify: center);
+    }
+    &__checkbox-img {
+      opacity: 0;
+      transition: 0.3s;
+    }
+  }
+  &__gradient {
+    @include border-radius(40px);
+    &:hover {
+      background: linear-gradient(180deg, color("blue-neon"), color("lime"));
+      @include size(default, fit-content);
+    }
+  }
+  &__button {
+    @extend %main-button-noborder;
+    background-color: color("blue-neon");
+    &:hover {
+      background-color: transparent;
+    }
+    &:active {
+      background-color: color("lime");
+    }
+  }
+  &__img-container {
+    @include size(default, 296px, 150px);
+    position: relative;
+    overflow: hidden;
+    @include respond-to(tablet) {
+      @include size(default, 460px, 394px);
+      position: absolute;
+      left: calc(950px - 460px);
+    }
+    @include respond-to(desktop) {
+      @include size(default, 788px, 394px);
+      left: calc(1280px - 788px);
+    }
+  }
+  &__img {
+    position: absolute;
+    &:first-child {
+      transition: transform 0.5s ease-in-out;
+      top: 130px;
+      @include respond-to(tablet) {
+        display: none;
+      }
+    }
+    &:nth-child(2) {
+      display: none;
+      @include respond-to(tablet) {
+        display: block;
+        rotate: 90deg;
+        @include size(default, 126px);
+        top: 390px;
+        z-index: 20;
+      }
+      @include respond-to(desktop) {
+        @include size(default, 218px);
+        top: 392px;
+      }
+    }
+    &:nth-child(3) {
+      display: none;
+      @include respond-to(tablet) {
+        display: block;
+        rotate: 150deg;
+        @include size(default, 212px);
+        top: -220px;
+        left: 76px;
+        z-index: 30;
+        @include respond-to(desktop) {
+          @include size(default, 362px);
+          top: -360px;
+          left: 130px;
+        }
+      }
+    }
+    &:nth-child(4) {
+      display: none;
+      @include respond-to(tablet) {
+        display: block;
+        rotate: -15deg;
+        @include size(default, 188px);
+        top: 390px;
+        left: 148px;
+        z-index: 50;
+        @include respond-to(desktop) {
+          @include size(default, 323px);
+          top: 392px;
+          left: 254px;
+        }
+      }
+    }
+    &:nth-child(5) {
+      display: none;
+      @include respond-to(tablet) {
+        display: block;
+        rotate: 135deg;
+        @include size(default, 172px);
+        top: -172px;
+        left: 286px;
+        z-index: 40;
+        @include respond-to(desktop) {
+          @include size(default, 296px);
+          top: -294px;
+          left: 493px;
+        }
       }
     }
   }
